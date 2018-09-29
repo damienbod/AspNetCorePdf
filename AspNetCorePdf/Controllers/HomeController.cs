@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using AspNetCorePdf.Models;
 using AspNetCorePdf.PdfProvider;
 using AspNetCorePdf.PdfProvider.DataModel;
+using System.IO;
 
 namespace AspNetCorePdf.Controllers
 {
@@ -20,6 +21,14 @@ namespace AspNetCorePdf.Controllers
         }
 
         public IActionResult Index()
+        {
+          
+            return View();
+        }
+
+        //[Route("CreatePdf")]
+        [HttpGet]
+        public FileStreamResult CreatePdf()
         {
             var data = new PdfData
             {
@@ -36,8 +45,10 @@ namespace AspNetCorePdf.Controllers
 
                 }
             };
-            _pdfService.CreatePdf(data);
-            return View();
+            var path = _pdfService.CreatePdf(data);
+
+            var stream = new FileStream(path, FileMode.Open);
+            return File(stream, "application/pdf");
         }
 
         public IActionResult Privacy()
