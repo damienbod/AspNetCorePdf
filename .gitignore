@@ -1,0 +1,6 @@
+/.vs
+/AspNetCorePdf/bin
+/AspNetCorePdf/obj
+/PdfSharp/bin
+/AspNetCorePdf/wwwroot
+/PdfSharp/obj

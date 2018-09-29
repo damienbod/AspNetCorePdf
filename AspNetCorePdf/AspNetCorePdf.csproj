@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="PdfProvider\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PdfProvider\Images\logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PdfSharp\PdfSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PdfProvider\Created\" />
+  </ItemGroup>
+
+</Project>

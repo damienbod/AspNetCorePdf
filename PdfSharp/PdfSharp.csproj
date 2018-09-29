@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>3.0.0.0</Version>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);CORE;CORE_WITH_GDI</DefineConstants>
+    <AssemblyName>PdfSharp.netstandard2.0</AssemblyName>
+    <PackageId>PdfSharp.netstandard2.0</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <RootNamespace>YetaWF.Modules.AddThis</RootNamespace>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Remove="**\*.cshtml_MVC5" />
+    <None Remove="**\*.cshtml_MVC6" />
+    <!-- TODO: Review for final release - this is a workaround for slow solution load -->
+    <Compile Remove="node_modules\**" />
+    <Content Remove="node_modules\**" />
+    <None Remove="node_modules\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="Drawing.BarCodes\DataMatrixImage.opensource.cs" />
+    <Compile Remove="Forms\PagePreview.cs" />
+    <Compile Remove="Forms\PagePreviewCanvas.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Forms\PagePreviewCanvas.resx" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
