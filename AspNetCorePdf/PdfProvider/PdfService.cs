@@ -15,7 +15,10 @@ namespace AspNetCorePdf.PdfProvider
 
         public string CreatePdf(PdfData pdfData)
         {
-            GlobalFontSettings.FontResolver = new FontResolver();
+            if (GlobalFontSettings.FontResolver == null)
+            {
+                GlobalFontSettings.FontResolver = new FontResolver();
+            }
 
             var document = new PdfDocument();
             var page = document.AddPage();
