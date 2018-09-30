@@ -1,4 +1,4 @@
-# Create PDF in ASP.NET Core just PdfSharp
+# Creating PDF files in ASP.NET Core using PdfSharp
 
 https://github.com/YetaWF/PDFsharp-.netcoreapp2.0
 
