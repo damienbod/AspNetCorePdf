@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the TabStop class with the specified parent.
         /// </summary>
-        internal TabStop(DocumentObject parent) : base(parent) { }
+        public TabStop(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the TabStop class with the specified position.
@@ -78,7 +78,7 @@ namespace MigraDoc.DocumentObjectModel
             get { return _position; }
         }
         [DV]
-        internal Unit _position = Unit.NullValue;  // always defined
+        public Unit _position = Unit.NullValue;  // always defined
         // useful enhancement: 'Position = Center' and 'Position = Right'
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _alignment.Value = (int)value; }
         }
         [DV(Type = typeof(TabAlignment))]
-        internal NEnum _alignment = NEnum.NullValue(typeof(TabAlignment));
+        public NEnum _alignment = NEnum.NullValue(typeof(TabAlignment));
 
         /// <summary>
         /// Gets or sets the character which is used as a leader for the tabstop.
@@ -101,19 +101,19 @@ namespace MigraDoc.DocumentObjectModel
             set { _leader.Value = (int)value; }
         }
         [DV(Type = typeof(TabLeader))]
-        internal NEnum _leader = NEnum.NullValue(typeof(TabLeader));
+        public NEnum _leader = NEnum.NullValue(typeof(TabLeader));
 
         /// <summary>
         /// Generates a '+=' in DDL if it is true, otherwise '-='.
         /// </summary>
-        internal bool AddTab = true;
+        public bool AddTab = true;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TabStop into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (AddTab)
             {
@@ -133,7 +133,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(TabStop))); }
         }

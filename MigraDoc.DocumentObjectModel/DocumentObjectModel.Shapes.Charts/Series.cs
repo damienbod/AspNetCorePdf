@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -122,7 +122,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal SeriesElements _seriesElements;
+        public SeriesElements _seriesElements;
 
         /// <summary>
         /// Gets or sets the name of the series which will be used in the legend.
@@ -133,7 +133,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
 
         /// <summary>
         /// Gets the line format of the border of each data.
@@ -148,7 +148,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the background filling of the data.
@@ -163,7 +163,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal FillFormat _fillFormat;
+        public FillFormat _fillFormat;
 
         /// <summary>
         /// Gets or sets the size of the marker in a line chart.
@@ -174,7 +174,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _markerSize = value; }
         }
         [DV]
-        internal Unit _markerSize = Unit.NullValue;
+        public Unit _markerSize = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the style of the marker in a line chart.
@@ -185,7 +185,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _markerStyle.Value = (int)value; }
         }
         [DV(Type = typeof(MarkerStyle))]
-        internal NEnum _markerStyle = NEnum.NullValue(typeof(MarkerStyle));
+        public NEnum _markerStyle = NEnum.NullValue(typeof(MarkerStyle));
 
         /// <summary>
         /// Gets or sets the foreground color of the marker in a line chart.
@@ -196,7 +196,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _markerForegroundColor = value; }
         }
         [DV]
-        internal Color _markerForegroundColor = Color.Empty;
+        public Color _markerForegroundColor = Color.Empty;
 
         /// <summary>
         /// Gets or sets the background color of the marker in a line chart.
@@ -207,7 +207,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _markerBackgroundColor = value; }
         }
         [DV]
-        internal Color _markerBackgroundColor = Color.Empty;
+        public Color _markerBackgroundColor = Color.Empty;
 
         /// <summary>
         /// Gets or sets the chart type of the series if it's intended to be different than the global chart type.
@@ -218,7 +218,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _chartType.Value = (int)value; }
         }
         [DV(Type = typeof(ChartType))]
-        internal NEnum _chartType = NEnum.NullValue(typeof(ChartType));
+        public NEnum _chartType = NEnum.NullValue(typeof(ChartType));
 
         /// <summary>
         /// Gets the DataLabel of the series.
@@ -233,7 +233,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal DataLabel _dataLabel;
+        public DataLabel _dataLabel;
 
         /// <summary>
         /// Gets or sets whether the series has a DataLabel.
@@ -244,7 +244,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _hasDataLabel.Value = value; }
         }
         [DV]
-        internal NBool _hasDataLabel = NBool.NullValue;
+        public NBool _hasDataLabel = NBool.NullValue;
 
         /// <summary>
         /// Gets the elementcount of the series.
@@ -261,11 +261,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Series into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\series");
 
@@ -308,7 +308,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Series))); }
         }

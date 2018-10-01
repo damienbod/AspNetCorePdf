@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the XValues class with the specified parent.
         /// </summary>
-        internal XValues(DocumentObject parent) : base(parent) { }
+        public XValues(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -79,11 +79,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts XValues into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int count = Count;
             for (int index = 0; index < count; ++index)
@@ -96,7 +96,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(XValues))); }
         }

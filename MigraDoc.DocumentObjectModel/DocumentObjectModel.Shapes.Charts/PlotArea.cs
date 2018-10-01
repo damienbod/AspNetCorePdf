@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -42,14 +42,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the PlotArea class.
         /// </summary>
-        internal PlotArea()
+        public PlotArea()
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the PlotArea class with the specified parent.
         /// </summary>
-        internal PlotArea(DocumentObject parent) : base(parent) { }
+        public PlotArea(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -94,7 +94,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the background filling of the plot area.
@@ -109,7 +109,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal FillFormat _fillFormat;
+        public FillFormat _fillFormat;
 
         /// <summary>
         /// Gets or sets the left padding of the area.
@@ -120,7 +120,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _leftPadding = value; }
         }
         [DV]
-        internal Unit _leftPadding = Unit.NullValue;
+        public Unit _leftPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the right padding of the area.
@@ -131,7 +131,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _rightPadding = value; }
         }
         [DV]
-        internal Unit _rightPadding = Unit.NullValue;
+        public Unit _rightPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the top padding of the area.
@@ -142,7 +142,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _topPadding = value; }
         }
         [DV]
-        internal Unit _topPadding = Unit.NullValue;
+        public Unit _topPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the bottom padding of the area.
@@ -153,14 +153,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _bottomPadding = value; }
         }
         [DV]
-        internal Unit _bottomPadding = Unit.NullValue;
+        public Unit _bottomPadding = Unit.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts PlotArea into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\plotarea");
             int pos = serializer.BeginAttributes();
@@ -188,7 +188,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(PlotArea))); }
         }

@@ -32,7 +32,7 @@
 
 // ReSharper disable InconsistentNaming
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Indicates how to retrieve a value from a DocumentObject.

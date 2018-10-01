@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Fields
 {
@@ -56,13 +56,13 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the NumericFieldBase class.
         /// </summary>
-        internal NumericFieldBase()
+        public NumericFieldBase()
         { }
 
         /// <summary>
         /// Initializes a new instance of the NumericFieldBase class with the specified parent.
         /// </summary>
-        internal NumericFieldBase(DocumentObject parent) : base(parent) { }
+        public NumericFieldBase(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -99,7 +99,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
             }
         }
         [DV]
-        internal NString _format = NString.NullValue;
+        public NString _format = NString.NullValue;
         #endregion
 
         /// <summary>

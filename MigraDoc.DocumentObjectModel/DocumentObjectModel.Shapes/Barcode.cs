@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -43,13 +43,13 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the Barcode class.
         /// </summary>
-        internal Barcode()
+        public Barcode()
         { }
 
         /// <summary>
         /// Initializes a new instance of the Barcode class with the specified parent.
         /// </summary>
-        internal Barcode(DocumentObject parent) : base(parent) { }
+        public Barcode(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -71,7 +71,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _orientation.Value = (int)value; }
         }
         [DV(Type = typeof(TextOrientation))]
-        internal NEnum _orientation = NEnum.NullValue(typeof(TextOrientation));
+        public NEnum _orientation = NEnum.NullValue(typeof(TextOrientation));
 
         /// <summary>
         /// Gets or sets the type of the barcode.
@@ -82,7 +82,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _type.Value = (int)value; }
         }
         [DV(Type = typeof(BarcodeType))]
-        internal NEnum _type = NEnum.NullValue(typeof(BarcodeType));
+        public NEnum _type = NEnum.NullValue(typeof(BarcodeType));
 
         /// <summary>
         /// Gets or sets a value indicating whether bars shall appear beside the barcode
@@ -93,7 +93,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _bearerBars.Value = value; }
         }
         [DV]
-        internal NBool _bearerBars = NBool.NullValue;
+        public NBool _bearerBars = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the a value indicating whether the barcode's code is rendered.
@@ -104,7 +104,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _text.Value = value; }
         }
         [DV]
-        internal NBool _text = NBool.NullValue;
+        public NBool _text = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets code the barcode represents.
@@ -115,7 +115,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _code.Value = value; }
         }
         [DV]
-        internal NString _code = NString.NullValue;
+        public NString _code = NString.NullValue;
 
         /// <summary>
         /// ???
@@ -126,7 +126,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _lineRatio.Value = value; }
         }
         [DV]
-        internal NDouble _lineRatio = NDouble.NullValue;
+        public NDouble _lineRatio = NDouble.NullValue;
 
         /// <summary>
         /// ???
@@ -137,7 +137,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _lineHeight.Value = value; }
         }
         [DV]
-        internal NDouble _lineHeight = NDouble.NullValue;
+        public NDouble _lineHeight = NDouble.NullValue;
 
         /// <summary>
         /// ???
@@ -148,14 +148,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _narrowLineWidth.Value = value; }
         }
         [DV]
-        internal NDouble _narrowLineWidth = NDouble.NullValue;
+        public NDouble _narrowLineWidth = NDouble.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Barcode into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_code.Value == "")
                 throw new InvalidOperationException(DomSR.MissingObligatoryProperty("Name", "BookmarkField"));
@@ -187,7 +187,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Barcode))); }
         }

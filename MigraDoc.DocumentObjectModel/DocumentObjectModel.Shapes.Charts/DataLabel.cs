@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the DataLabel class with the specified parent.
         /// </summary>
-        internal DataLabel(DocumentObject parent) : base(parent) { }
+        public DataLabel(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -85,7 +85,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _format.Value = value; }
         }
         [DV]
-        internal NString _format = NString.NullValue;
+        public NString _format = NString.NullValue;
 
         /// <summary>
         /// Gets the Font for the DataLabel.
@@ -100,7 +100,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
 
         /// <summary>
         /// Gets or sets the Style for the DataLabel.
@@ -112,7 +112,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the position of the DataLabel.
@@ -123,7 +123,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _position.Value = (int)value; }
         }
         [DV(Type = typeof(DataLabelPosition))]
-        internal NEnum _position = NEnum.NullValue(typeof(DataLabelPosition));
+        public NEnum _position = NEnum.NullValue(typeof(DataLabelPosition));
 
         /// <summary>
         /// Gets or sets the type of the DataLabel.
@@ -134,14 +134,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _type.Value = (int)value; }
         }
         [DV(Type = typeof(DataLabelType))]
-        internal NEnum _type = NEnum.NullValue(typeof(DataLabelType));
+        public NEnum _type = NEnum.NullValue(typeof(DataLabelType));
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts DataLabel into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int pos = serializer.BeginContent("DataLabel");
 
@@ -162,7 +162,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(DataLabel))); }
         }

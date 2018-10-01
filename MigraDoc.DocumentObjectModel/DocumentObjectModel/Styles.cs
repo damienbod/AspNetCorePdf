@@ -33,7 +33,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel
@@ -54,7 +54,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Styles class with the specified parent.
         /// </summary>
-        internal Styles(DocumentObject parent)
+        public Styles(DocumentObject parent)
             : base(parent)
         {
             SetupStyles();
@@ -91,7 +91,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Gets a style by index. 
         /// </summary>
-        internal new Style this[int index]
+        public new Style this[int index]
         {
             get { return (Style)base[index]; }
         }
@@ -196,13 +196,13 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
         /// <summary>
         /// Initialize the built-in styles.
         /// </summary>
-        internal void SetupStyles()
+        public void SetupStyles()
         {
             Style style;
 
@@ -328,11 +328,11 @@ namespace MigraDoc.DocumentObjectModel
             Add(style);
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Styles into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             int pos = serializer.BeginContent("\\styles");
@@ -432,12 +432,12 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
 
-        internal static readonly Styles BuildInStyles = new Styles();
+        public static readonly Styles BuildInStyles = new Styles();
 
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Styles))); }
         }

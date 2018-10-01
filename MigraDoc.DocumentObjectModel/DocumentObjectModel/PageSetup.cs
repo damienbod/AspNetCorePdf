@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the PageSetup class with the specified parent.
         /// </summary>
-        internal PageSetup(DocumentObject parent) : base(parent) { }
+        public PageSetup(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -139,7 +139,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _sectionStart.Value = (int)value; }
         }
         [DV(Type = typeof(BreakType))]
-        internal NEnum _sectionStart = NEnum.NullValue(typeof(BreakType));
+        public NEnum _sectionStart = NEnum.NullValue(typeof(BreakType));
 
         /// <summary>
         /// Gets or sets the page orientation of the section.
@@ -150,7 +150,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _orientation.Value = (int)value; }
         }
         [DV(Type = typeof(Orientation))]
-        internal NEnum _orientation = NEnum.NullValue(typeof(Orientation));
+        public NEnum _orientation = NEnum.NullValue(typeof(Orientation));
 
         private bool IsLandscape
         {
@@ -168,12 +168,12 @@ namespace MigraDoc.DocumentObjectModel
             set { _pageWidth = value; }
         }
         [DV]
-        internal Unit _pageWidth = Unit.NullValue;
+        public Unit _pageWidth = Unit.NullValue;
 
         /// <summary>
         /// Gets the effective page width, depending on the Orientation this will either be the height or the width.
         /// </summary>
-        internal Unit EffectivePageWidth
+        public Unit EffectivePageWidth
         {
             get { return IsLandscape ? PageHeight : PageWidth; }
         }
@@ -187,7 +187,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _startingNumber.Value = value; }
         }
         [DV]
-        internal NInt _startingNumber = NInt.NullValue;
+        public NInt _startingNumber = NInt.NullValue;
 
         /// <summary>
         /// Gets or sets the page height. If Orientation is set to Landscape, the PageHeight specifies the width of the page.
@@ -198,12 +198,12 @@ namespace MigraDoc.DocumentObjectModel
             set { _pageHeight = value; }
         }
         [DV]
-        internal Unit _pageHeight = Unit.NullValue;
+        public Unit _pageHeight = Unit.NullValue;
 
         /// <summary>
         /// Gets the effective page height, depending on the Orientation this will either be the height or the width.
         /// </summary>
-        internal Unit EffectivePageHeight
+        public Unit EffectivePageHeight
         {
             get { return IsLandscape ? PageWidth : PageHeight; }
         }
@@ -217,7 +217,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _topMargin = value; }
         }
         [DV]
-        internal Unit _topMargin = Unit.NullValue;
+        public Unit _topMargin = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the bottom margin of the pages in the section.
@@ -228,7 +228,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _bottomMargin = value; }
         }
         [DV]
-        internal Unit _bottomMargin = Unit.NullValue;
+        public Unit _bottomMargin = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the left margin of the pages in the section.
@@ -239,7 +239,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _leftMargin = value; }
         }
         [DV]
-        internal Unit _leftMargin = Unit.NullValue;
+        public Unit _leftMargin = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the right margin of the pages in the section.
@@ -250,7 +250,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _rightMargin = value; }
         }
         [DV]
-        internal Unit _rightMargin = Unit.NullValue;
+        public Unit _rightMargin = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets a value which defines whether the odd and even pages
@@ -262,7 +262,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _oddAndEvenPagesHeaderFooter.Value = value; }
         }
         [DV]
-        internal NBool _oddAndEvenPagesHeaderFooter = NBool.NullValue;
+        public NBool _oddAndEvenPagesHeaderFooter = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets a value which define whether the section has a different
@@ -274,7 +274,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _differentFirstPageHeaderFooter.Value = value; }
         }
         [DV]
-        internal NBool _differentFirstPageHeaderFooter = NBool.NullValue;
+        public NBool _differentFirstPageHeaderFooter = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the distance between the header and the page top
@@ -286,7 +286,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _headerDistance = value; }
         }
         [DV]
-        internal Unit _headerDistance = Unit.NullValue;
+        public Unit _headerDistance = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the distance between the footer and the page bottom
@@ -298,7 +298,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _footerDistance = value; }
         }
         [DV]
-        internal Unit _footerDistance = Unit.NullValue;
+        public Unit _footerDistance = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets a value which defines whether the odd and even pages
@@ -310,7 +310,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _mirrorMargins.Value = value; }
         }
         [DV]
-        internal NBool _mirrorMargins = NBool.NullValue;
+        public NBool _mirrorMargins = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets a value which defines whether a page should break horizontally.
@@ -322,7 +322,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _horizontalPageBreak.Value = value; }
         }
         [DV]
-        internal NBool _horizontalPageBreak = NBool.NullValue;
+        public NBool _horizontalPageBreak = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the page format of the section.
@@ -333,7 +333,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _pageFormat.Value = (int)value; }
         }
         [DV(Type = typeof(PageFormat))]
-        internal NEnum _pageFormat = NEnum.NullValue(typeof(PageFormat));
+        public NEnum _pageFormat = NEnum.NullValue(typeof(PageFormat));
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -344,7 +344,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Gets a PageSetup object with default values for all properties.
         /// </summary>
-        internal static PageSetup DefaultPageSetup
+        public static PageSetup DefaultPageSetup
         {
             get
             {
@@ -394,11 +394,11 @@ namespace MigraDoc.DocumentObjectModel
         }
         static PageSetup _defaultPageSetup;
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts PageSetup into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             int pos = serializer.BeginContent("PageSetup");
@@ -457,7 +457,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(PageSetup))); }
         }

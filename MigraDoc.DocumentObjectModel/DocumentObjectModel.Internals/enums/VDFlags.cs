@@ -34,10 +34,10 @@ using System;
 
 // ReSharper disable InconsistentNaming
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     [Flags]
-    internal enum VDFlags
+    public enum VDFlags
     {
         None = 0,
         RefOnly = 0x0001

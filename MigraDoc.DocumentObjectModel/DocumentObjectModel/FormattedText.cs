@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Shapes;
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the FormattedText class with the specified parent.
         /// </summary>
-        internal FormattedText(DocumentObject parent) : base(parent) { }
+        public FormattedText(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -459,7 +459,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
 
         /// <summary>
         /// Gets or sets the style name.
@@ -470,7 +470,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the name of the font.
@@ -484,10 +484,10 @@ namespace MigraDoc.DocumentObjectModel
 
         /// <summary>
         /// Gets or sets the name of the font.
-        /// For internal use only.
+        /// For public use only.
         /// </summary>
         [DV]
-        internal string Name
+        public string Name
         {
             get { return Font.Name; }
             set { Font.Name = value; }
@@ -576,14 +576,14 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal ParagraphElements _elements;
+        public ParagraphElements _elements;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts FormattedText into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             bool isFormatted = false;
             if (!IsNull("Font"))
@@ -624,7 +624,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(FormattedText))); }
         }

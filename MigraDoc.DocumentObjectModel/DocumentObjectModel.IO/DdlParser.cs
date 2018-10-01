@@ -33,7 +33,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
@@ -43,19 +43,19 @@ namespace MigraDoc.DocumentObjectModel.IO
     /// <summary>
     /// A simple hand-coded parser for MigraDoc DDL.
     /// </summary>
-    internal class DdlParser
+    public class DdlParser
     {
         /// <summary>
         /// Initializes a new instance of the DdlParser class.
         /// </summary>
-        internal DdlParser(string ddl, DdlReaderErrors errors)
+        public DdlParser(string ddl, DdlReaderErrors errors)
             : this(String.Empty, ddl, errors)
         { }
 
         /// <summary>
         /// Initializes a new instance of the DdlParser class.
         /// </summary>
-        internal DdlParser(string fileName, string ddl, DdlReaderErrors errors)
+        public DdlParser(string fileName, string ddl, DdlReaderErrors errors)
         {
             _errors = errors ?? new DdlReaderErrors();
             _scanner = new DdlScanner(fileName, ddl, errors);
@@ -64,7 +64,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Parses the keyword «\document».
         /// </summary>
-        internal Document ParseDocument(Document document)
+        public Document ParseDocument(Document document)
         {
             if (document == null)
                 document = new Document();
@@ -97,7 +97,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Parses one of the keywords «\document», «\styles», «\section», «\table», «\textframe», «\chart»
         /// and «\paragraph» and returns the corresponding DocumentObject or DocumentObjectCollection.
         /// </summary>
-        internal DocumentObject ParseDocumentObject()
+        public DocumentObject ParseDocumentObject()
         {
             DocumentObject obj = null;
 
@@ -2674,7 +2674,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// and comments are skipped. Returns true if such a character exists, and false if the
         /// paragraph ends without content.
         /// </summary>
-        internal bool MoveToParagraphContent()
+        public bool MoveToParagraphContent()
         {
             return _scanner.MoveToParagraphContent();
         }
@@ -2687,7 +2687,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// the end of the paragraph, the DDL cursor is moved to the next valid content
         /// character or '}' respectively.
         /// </summary>
-        internal bool MoveToNextParagraphContentLine(bool rootLevel)
+        public bool MoveToNextParagraphContentLine(bool rootLevel)
         {
             return _scanner.MoveToNextParagraphContentLine(rootLevel);
         }

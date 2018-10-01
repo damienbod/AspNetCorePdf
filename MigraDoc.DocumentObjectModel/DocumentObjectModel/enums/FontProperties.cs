@@ -36,7 +36,7 @@ namespace MigraDoc.DocumentObjectModel
 {
     /// <summary>
     /// Specifies the properties for the font.
-    /// FOR INTERNAL USE ONLY.
+    /// FOR public USE ONLY.
     /// </summary>
     [Flags]
     enum FontProperties

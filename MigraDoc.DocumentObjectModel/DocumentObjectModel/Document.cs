@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel
@@ -83,7 +83,7 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
-        /// Internal function used by renderers to bind this instance to it. 
+        /// public function used by renderers to bind this instance to it. 
         /// </summary>
         public void BindToRenderer(object renderer)
         {
@@ -91,7 +91,7 @@ namespace MigraDoc.DocumentObjectModel
             {
                 throw new InvalidOperationException("The document is already bound to another renderer. " +
                   "A MigraDoc document can be rendered by only one renderer, because the rendering process " +
-                  "modifies its internal structure. If you want to render a MigraDoc document on different renderers, " +
+                  "modifies its public structure. If you want to render a MigraDoc document on different renderers, " +
                   "you must create a copy of it using the Clone function.");
             }
             _renderer = renderer;
@@ -170,7 +170,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
 
         /// <summary>
         /// Gets the document info.
@@ -185,7 +185,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal DocumentInfo _info;
+        public DocumentInfo _info;
 
         /// <summary>
         /// Gets or sets the styles of the document.
@@ -200,7 +200,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Styles _styles;
+        public Styles _styles;
 
         /// <summary>
         /// Gets or sets the default tab stop position.
@@ -211,7 +211,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _defaultTabStop = value; }
         }
         [DV]
-        internal Unit _defaultTabStop = Unit.NullValue;
+        public Unit _defaultTabStop = Unit.NullValue;
 
         /// <summary>
         /// Gets the default page setup.
@@ -230,7 +230,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _footnoteLocation.Value = (int)value; }
         }
         [DV(Type = typeof(FootnoteLocation))]
-        internal NEnum _footnoteLocation = NEnum.NullValue(typeof(FootnoteLocation));
+        public NEnum _footnoteLocation = NEnum.NullValue(typeof(FootnoteLocation));
 
         /// <summary>
         /// Gets or sets the rule which is used to determine the footnote number on a new page.
@@ -241,7 +241,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _footnoteNumberingRule.Value = (int)value; }
         }
         [DV(Type = typeof(FootnoteNumberingRule))]
-        internal NEnum _footnoteNumberingRule = NEnum.NullValue(typeof(FootnoteNumberingRule));
+        public NEnum _footnoteNumberingRule = NEnum.NullValue(typeof(FootnoteNumberingRule));
 
         /// <summary>
         /// Gets or sets the type of number which is used for the footnote.
@@ -252,7 +252,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _footnoteNumberStyle.Value = (int)value; }
         }
         [DV(Type = typeof(FootnoteNumberStyle))]
-        internal NEnum _footnoteNumberStyle = NEnum.NullValue(typeof(FootnoteNumberStyle));
+        public NEnum _footnoteNumberStyle = NEnum.NullValue(typeof(FootnoteNumberStyle));
 
         /// <summary>
         /// Gets or sets the starting number of the footnote.
@@ -263,7 +263,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _footnoteStartingNumber.Value = value; }
         }
         [DV]
-        internal NInt _footnoteStartingNumber = NInt.NullValue;
+        public NInt _footnoteStartingNumber = NInt.NullValue;
 
         /// <summary>
         /// Gets or sets the path for images used by the document.
@@ -274,7 +274,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _imagePath.Value = value; }
         }
         [DV]
-        internal NString _imagePath = NString.NullValue;
+        public NString _imagePath = NString.NullValue;
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the CMYK color model when rendered as PDF.
@@ -285,7 +285,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _useCmykColor.Value = value; }
         }
         [DV]
-        internal NBool _useCmykColor = NBool.NullValue;
+        public NBool _useCmykColor = NBool.NullValue;
 
         /// <summary>
         /// Gets the sections of the document.
@@ -300,7 +300,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Sections _sections;
+        public Sections _sections;
         #endregion
 
         /// <summary>
@@ -310,13 +310,13 @@ namespace MigraDoc.DocumentObjectModel
         {
             get { return _ddlFile; }
         }
-        internal string _ddlFile = "";
+        public string _ddlFile = "";
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Document into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\document");
@@ -365,7 +365,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Document))); }
         }

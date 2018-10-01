@@ -8,7 +8,7 @@ using System.IO;
 
 namespace AspNetCorePdf.PdfProvider
 {
-    public class PdfService : IPdfService
+    public class PdfSharpService : IPdfSharpService
     {
         private string _createdDocsPath = ".\\PdfProvider\\Created";
         private string _imagesPath = ".\\PdfProvider\\Images";
@@ -27,9 +27,7 @@ namespace AspNetCorePdf.PdfProvider
     
             AddTitleLogo(gfx, page, $"{_imagesPath}\\logo.jpg", 0, 0);
             AddTitleAndFooter(page, gfx, pdfData.DocumentTitle, document, pdfData);
-
             AddDescription(gfx, pdfData);
-
             AddList(gfx, pdfData);
 
             string docName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.pdf";

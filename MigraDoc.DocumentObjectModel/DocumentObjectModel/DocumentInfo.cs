@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the DocumentInfo class with the specified parent.
         /// </summary>
-        internal DocumentInfo(DocumentObject parent) : base(parent) { }
+        public DocumentInfo(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -71,7 +71,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _title.Value = value; }
         }
         [DV]
-        internal NString _title = NString.NullValue;
+        public NString _title = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the document author.
@@ -82,7 +82,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _author.Value = value; }
         }
         [DV]
-        internal NString _author = NString.NullValue;
+        public NString _author = NString.NullValue;
 
         /// <summary>
         /// Gets or sets keywords related to the document.
@@ -93,7 +93,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _keywords.Value = value; }
         }
         [DV]
-        internal NString _keywords = NString.NullValue;
+        public NString _keywords = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the subject of the document.
@@ -104,7 +104,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _subject.Value = value; }
         }
         [DV]
-        internal NString _subject = NString.NullValue;
+        public NString _subject = NString.NullValue;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -115,14 +115,14 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts DocumentInfo into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             int pos = serializer.BeginContent("Info");
@@ -145,7 +145,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(DocumentInfo))); }
         }

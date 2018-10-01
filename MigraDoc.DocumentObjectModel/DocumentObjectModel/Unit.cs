@@ -32,7 +32,7 @@
 
 using System;
 using System.Diagnostics;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -757,7 +757,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Represents the uninitialized Unit object. Same as Unit.Empty.
         /// </summary>
-        internal static readonly Unit NullValue = Empty;
+        public static readonly Unit NullValue = Empty;
 
         bool _initialized;
         float _value;

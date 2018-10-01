@@ -30,12 +30,12 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Represents a nullable boolean value.
     /// </summary>
-    internal struct NBool : INullableValue
+    public struct NBool : INullableValue
     {
         public NBool(bool value)
         {

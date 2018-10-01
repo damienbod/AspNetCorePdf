@@ -35,9 +35,9 @@ namespace MigraDoc.DocumentObjectModel.Visitors
     /// <summary>
     /// Represents the visitor for flattening the DocumentObject to be used in the RtfRenderer.
     /// </summary>
-    internal class RtfFlattenVisitor : VisitorBase
+    public class RtfFlattenVisitor : VisitorBase
     {
-        internal override void VisitFormattedText(FormattedText formattedText)
+        public override void VisitFormattedText(FormattedText formattedText)
         {
             Document document = formattedText.Document;
             ParagraphFormat format = null;
@@ -57,7 +57,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             }
         }
 
-        internal override void VisitHyperlink(Hyperlink hyperlink)
+        public override void VisitHyperlink(Hyperlink hyperlink)
         {
             Font styleFont = hyperlink.Document.Styles[StyleNames.Hyperlink].Font;
             if (hyperlink._font == null)

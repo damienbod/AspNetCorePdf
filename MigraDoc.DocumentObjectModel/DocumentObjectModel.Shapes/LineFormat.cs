@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the Lineformat class with the specified parent.
         /// </summary>
-        internal LineFormat(DocumentObject parent) : base(parent) { }
+        public LineFormat(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -70,7 +70,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _visible.Value = value; }
         }
         [DV]
-        internal NBool _visible = NBool.NullValue;
+        public NBool _visible = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the width of the line in Unit.
@@ -81,7 +81,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the color of the line.
@@ -92,7 +92,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets or sets the dash style of the line.
@@ -103,7 +103,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _dashStyle.Value = (int)value; }
         }
         [DV(Type = typeof(DashStyle))]
-        internal NEnum _dashStyle = NEnum.NullValue(typeof(DashStyle));
+        public NEnum _dashStyle = NEnum.NullValue(typeof(DashStyle));
 
         /// <summary>
         /// Gets or sets the style of the line.
@@ -114,14 +114,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _style.Value = (int)value; }
         }
         [DV(Type = typeof(LineStyle))]
-        internal NEnum _style = NEnum.NullValue(typeof(LineStyle));
+        public NEnum _style = NEnum.NullValue(typeof(LineStyle));
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts LineFormat into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int pos = serializer.BeginContent("LineFormat");
             if (!_visible.IsNull)
@@ -140,7 +140,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(LineFormat))); }
         }

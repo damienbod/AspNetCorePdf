@@ -35,7 +35,7 @@ using System.Collections.Generic;
 
 namespace MigraDoc.DocumentObjectModel.IO
 {
-    internal class KeyWords
+    public class KeyWords
     {
         static KeyWords()
         {
@@ -197,7 +197,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Returns Symbol value from name, or Symbol.None if no such Symbol exists.
         /// </summary>
-        internal static Symbol SymbolFromName(string name)
+        public static Symbol SymbolFromName(string name)
         {
             Symbol symbol;
             if (!NameToEnum.TryGetValue(name, out symbol))
@@ -218,7 +218,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Returns string from Symbol value.
         /// </summary>
-        internal static string NameFromSymbol(Symbol symbol)
+        public static string NameFromSymbol(Symbol symbol)
         {
             return EnumToName[symbol];
         }

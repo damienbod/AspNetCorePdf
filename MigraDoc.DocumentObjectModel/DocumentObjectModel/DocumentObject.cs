@@ -32,7 +32,7 @@
 
 using System;
 using System.Diagnostics;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -44,13 +44,13 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the DocumentObject class.
         /// </summary>
-        internal DocumentObject()
+        public DocumentObject()
         { }
 
         /// <summary>
         /// Initializes a new instance of the DocumentObject class with the specified parent.
         /// </summary>
-        internal DocumentObject(DocumentObject parent)
+        public DocumentObject(DocumentObject parent)
         {
             Debug.Assert(parent != null, "Parent must not be null.");
             _parent = parent;
@@ -88,12 +88,12 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Gets the parent object.
         /// </summary>
-        internal DocumentObject Parent
+        public DocumentObject Parent
         {
             get { return _parent; }
         }
         [DV(RefOnly = true)]
-        internal DocumentObject _parent;
+        public DocumentObject _parent;
 
         /// <summary>
         /// Gets the document of the object, or null, if the object is not associated with a document.
@@ -144,7 +144,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts DocumentObject into DDL.
         /// </summary>
-        internal abstract void Serialize(Serializer serializer);
+        public abstract void Serialize(Serializer serializer);
 
         /// <summary>
         /// Returns the value with the specified name.
@@ -226,7 +226,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal abstract Meta Meta
+        public abstract Meta Meta
         {
             get;
         }
@@ -252,7 +252,7 @@ namespace MigraDoc.DocumentObjectModel
         /// When overridden in a derived class resets cached values
         /// (like column index).
         /// </summary>
-        internal virtual void ResetCachedValues()
+        public virtual void ResetCachedValues()
         {
             _document = null;
             _section = null;

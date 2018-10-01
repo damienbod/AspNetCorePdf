@@ -37,7 +37,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
     /// <summary>
     /// Flattens a document for PDF rendering.
     /// </summary>
-    internal class PdfFlattenVisitor : VisitorBase
+    public class PdfFlattenVisitor : VisitorBase
     {
         /// <summary>
         /// Initializes a new instance of the PdfFlattenVisitor class.
@@ -47,7 +47,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             //this .docObject = documentObject;
         }
 
-        internal override void VisitDocumentElements(DocumentElements elements)
+        public override void VisitDocumentElements(DocumentElements elements)
         {
 #if true
             // New version without sorted list
@@ -100,7 +100,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
 #endif
         }
 
-        internal override void VisitDocumentObjectCollection(DocumentObjectCollection elements)
+        public override void VisitDocumentObjectCollection(DocumentObjectCollection elements)
         {
             List<int> textIndices = new List<int>();
             if (elements is ParagraphElements)
@@ -184,7 +184,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             }
         }
 
-        internal override void VisitFormattedText(FormattedText formattedText)
+        public override void VisitFormattedText(FormattedText formattedText)
         {
             Document document = formattedText.Document;
             ParagraphFormat format = null;
@@ -211,7 +211,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                 FlattenFont(formattedText._font, parentFont);
         }
 
-        internal override void VisitHyperlink(Hyperlink hyperlink)
+        public override void VisitHyperlink(Hyperlink hyperlink)
         {
             Font styleFont = hyperlink.Document.Styles[StyleNames.Hyperlink].Font;
             if (hyperlink._font == null)

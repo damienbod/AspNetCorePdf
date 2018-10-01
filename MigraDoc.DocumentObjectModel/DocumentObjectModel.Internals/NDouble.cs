@@ -30,12 +30,12 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Represents a nullable double value.
     /// </summary>
-    internal struct NDouble : INullableValue
+    public struct NDouble : INullableValue
     {
         public NDouble(double value)
         {

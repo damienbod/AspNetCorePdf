@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Tables
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Initializes a new instance of the Cells class with the specified parent.
         /// </summary>
-        internal Cells(DocumentObject parent) : base(parent) { }
+        public Cells(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -65,7 +65,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Resets the cached values.
         /// </summary>
-        internal override void ResetCachedValues()
+        public override void ResetCachedValues()
         {
             base.ResetCachedValues();
             _row = null;
@@ -126,11 +126,11 @@ namespace MigraDoc.DocumentObjectModel.Tables
                 Add(new Cell());
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Cells into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int cells = Count;
             for (int cell = 0; cell < cells; cell++)
@@ -140,7 +140,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Cells))); }
         }

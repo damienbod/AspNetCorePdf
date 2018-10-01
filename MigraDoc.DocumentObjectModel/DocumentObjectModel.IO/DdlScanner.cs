@@ -50,12 +50,12 @@ namespace MigraDoc.DocumentObjectModel.IO
     /// <summary>
     /// DdlScanner
     /// </summary>
-    internal class DdlScanner
+    public class DdlScanner
     {
         /// <summary>
         /// Initializes a new instance of the DdlScanner class.
         /// </summary>
-        internal DdlScanner(string documentFileName, string ddl, DdlReaderErrors errors)
+        public DdlScanner(string documentFileName, string ddl, DdlReaderErrors errors)
         {
             _errors = errors;
             Init(ddl, documentFileName);
@@ -64,14 +64,14 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Initializes a new instance of the DdlScanner class.
         /// </summary>
-        internal DdlScanner(string ddl, DdlReaderErrors errors)
+        public DdlScanner(string ddl, DdlReaderErrors errors)
             : this("", ddl, errors)
         { }
 
         /// <summary>
         /// Initializes all members and prepares the scanner.
         /// </summary>
-        internal bool Init(string document, string documentFileName)
+        public bool Init(string document, string documentFileName)
         {
             _documentPath = documentFileName;
             _strDocument = document;
@@ -98,11 +98,11 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Returns the current symbol.
         /// It is Symbol.Eof if the end of the DDL string is reached.
         /// </returns>
-        internal Symbol ReadCode()
+        public Symbol ReadCode()
         {
         Again:
             _symbol = Symbol.None;
-            _tokenType = TokenType.None;
+            TokenType = TokenType.None;
             _token = "";
 
             MoveToNonWhiteSpace();
@@ -118,13 +118,13 @@ namespace MigraDoc.DocumentObjectModel.IO
             {
                 // Token is identifier.
                 _symbol = ScanIdentifier();
-                _tokenType = TokenType.Identifier;
+                TokenType = TokenType.Identifier;
                 // Some keywords do not start with a backslash: true, false, and null.
                 Symbol sym = KeyWords.SymbolFromName(_token);
                 if (sym != Symbol.None)
                 {
                     _symbol = sym;
-                    _tokenType = TokenType.KeyWord;
+                    TokenType = TokenType.KeyWord;
                 }
             }
             else if (_currChar == '"')
@@ -132,7 +132,7 @@ namespace MigraDoc.DocumentObjectModel.IO
                 // Token is string literal.
                 _token += ScanStringLiteral();
                 _symbol = Symbol.StringLiteral;
-                _tokenType = TokenType.StringLiteral;
+                TokenType = TokenType.StringLiteral;
             }
             //NYI: else if (IsNumber())
             //      symbol = ScanNumber(false);
@@ -142,20 +142,20 @@ namespace MigraDoc.DocumentObjectModel.IO
             {
                 // Token is number literal.
                 _symbol = ScanNumber(false);
-                _tokenType = _symbol == Symbol.RealLiteral ? TokenType.RealLiteral : TokenType.IntegerLiteral;
+                TokenType = _symbol == Symbol.RealLiteral ? TokenType.RealLiteral : TokenType.IntegerLiteral;
             }
             else if (_currChar == '.' && IsDigit(_nextChar))
             {
                 // Token is real literal.
                 _symbol = ScanNumber(true);
-                _tokenType = TokenType.RealLiteral;
+                TokenType = TokenType.RealLiteral;
             }
             else if (_currChar == '\\')
             {
                 // Token is keyword.
                 _token = "\\";
                 _symbol = ScanKeyword();
-                _tokenType = _symbol != Symbol.None ? TokenType.KeyWord : TokenType.None;
+                TokenType = _symbol != Symbol.None ? TokenType.KeyWord : TokenType.None;
             }
             else if (_currChar == '/' && _nextChar == '/')
             {
@@ -169,7 +169,7 @@ namespace MigraDoc.DocumentObjectModel.IO
                 ScanNextChar();
                 _token += ScanVerbatimStringLiteral();
                 _symbol = Symbol.StringLiteral;
-                _tokenType = _symbol != Symbol.None ? TokenType.StringLiteral : TokenType.None;
+                TokenType = _symbol != Symbol.None ? TokenType.StringLiteral : TokenType.None;
             }
             else
             {
@@ -182,7 +182,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the next keyword at the current position without touching the DDL cursor.
         /// </summary>
-        internal Symbol PeekKeyword()
+        public Symbol PeekKeyword()
         {
             Debug.Assert(_currChar == Chars.BackSlash);
 
@@ -192,7 +192,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the next keyword without touching the DDL cursor.
         /// </summary>
-        internal Symbol PeekKeyword(int index)
+        public Symbol PeekKeyword(int index)
         {
             // Check special keywords
             switch (_strDocument[index])
@@ -347,7 +347,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the next symbol without touching the DDL cursor.
         /// </summary>
-        internal Symbol PeekSymbol()
+        public Symbol PeekSymbol()
         {
             int idx = _idx - 1;
             int length = _ddlLength - idx;
@@ -372,14 +372,14 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Reads either text or \keyword from current position.
         /// </summary>
-        internal Symbol ReadText(bool rootLevel)
+        public Symbol ReadText(bool rootLevel)
         {
             // Previous call encountered an empty line.
             if (_emptyLine)
             {
                 _emptyLine = false;
                 _symbol = Symbol.EmptyLine;
-                _tokenType = TokenType.None;
+                TokenType = TokenType.None;
                 _token = "";
                 return Symbol.EmptyLine;
             }
@@ -387,7 +387,7 @@ namespace MigraDoc.DocumentObjectModel.IO
             // Init for scanning.
             _prevSymbol = _symbol;
             _symbol = Symbol.None;
-            _tokenType = TokenType.None;
+            TokenType = TokenType.None;
             _token = "";
 
             // Save where we are
@@ -423,13 +423,13 @@ namespace MigraDoc.DocumentObjectModel.IO
                 case '{':
                     AppendAndScanNextChar();
                     _symbol = Symbol.BraceLeft;
-                    _tokenType = TokenType.OperatorOrPunctuator;
+                    TokenType = TokenType.OperatorOrPunctuator;
                     return Symbol.BraceLeft;  // Syntax error in any case.
 
                 case '}':
                     AppendAndScanNextChar();
                     _symbol = Symbol.BraceRight;
-                    _tokenType = TokenType.OperatorOrPunctuator;
+                    TokenType = TokenType.OperatorOrPunctuator;
                     return Symbol.BraceRight;
             }
 
@@ -452,14 +452,14 @@ namespace MigraDoc.DocumentObjectModel.IO
                     if (_currChar != Chars.BraceRight)
                     {
                         _symbol = Symbol.EmptyLine;
-                        _tokenType = TokenType.None; //???
+                        TokenType = TokenType.None; //???
                         return Symbol.EmptyLine;
                     }
                     else
                     {
                         AppendAndScanNextChar();
                         _symbol = Symbol.BraceRight;
-                        _tokenType = TokenType.OperatorOrPunctuator;
+                        TokenType = TokenType.OperatorOrPunctuator;
                         return Symbol.BraceRight;
                     }
                 }
@@ -577,14 +577,14 @@ namespace MigraDoc.DocumentObjectModel.IO
             }
 
             _symbol = Symbol.Text;
-            _tokenType = TokenType.Text;
+            TokenType = TokenType.Text;
             return Symbol.Text;
         }
 
         /// <summary>
         /// Moves to the next DDL token if Symbol is not set to a valid position.
         /// </summary>
-        internal Symbol MoveToCode()
+        public Symbol MoveToCode()
         {
             if (_symbol == Symbol.None || _symbol == Symbol.CR /*|| this .symbol == Symbol.comment*/)
                 ReadCode();
@@ -596,7 +596,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// and comments are skipped. Returns true if such a character exists, and false if the
         /// paragraph ends without content.
         /// </summary>
-        internal bool MoveToParagraphContent()
+        public bool MoveToParagraphContent()
         {
         Again:
             MoveToNonWhiteSpace();
@@ -615,7 +615,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// the end of the paragraph, the DDL cursor is moved to the next valid content
         /// character or '}' respectively.
         /// </summary>
-        internal bool MoveToNextParagraphContentLine(bool rootLevel)
+        public bool MoveToNextParagraphContentLine(bool rootLevel)
         {
             Debug.Assert(_currChar == Chars.LF);
             bool loop = true;
@@ -683,7 +683,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Otherwise the DDL cursor is moved forward to the first non-white space or EOF.
         /// White spaces are SPACE, HT, VT, CR, and LF.???
         /// </summary>
-        internal char MoveToNonWhiteSpaceOrEol()
+        public char MoveToNonWhiteSpaceOrEol()
         {
             while (_currChar != Chars.Null)
             {
@@ -707,7 +707,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Otherwise the DDL cursor is moved forward to the first non-white space or EOF.
         /// White spaces are SPACE, HT, VT, CR, and LF.
         /// </summary>
-        internal char MoveToNonWhiteSpace()
+        public char MoveToNonWhiteSpace()
         {
             while (_currChar != Chars.Null)
             {
@@ -731,7 +731,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Moves to the first character beyond the next EOL. 
         /// </summary>
-        internal void MoveBeyondEol()
+        public void MoveBeyondEol()
         {
             // Similar to ScanSingleLineComment but do not scan the token.
             ScanNextChar();
@@ -743,7 +743,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Reads a single line comment.
         /// </summary>
-        internal Symbol ScanSingleLineComment()
+        public Symbol ScanSingleLineComment()
         {
             char ch = ScanNextChar();
             while (ch != Chars.Null && ch != Chars.LF)
@@ -759,7 +759,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current symbol.
         /// </summary>
-        internal Symbol Symbol
+        public Symbol Symbol
         {
             get { return _symbol; }
         }
@@ -767,15 +767,12 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current token type.
         /// </summary>
-        internal TokenType TokenType
-        {
-            get { return _tokenType; }
-        }
+        public TokenType TokenType { get; private set; } = TokenType.None;
 
         /// <summary>
         /// Gets the current token.
         /// </summary>
-        internal string Token
+        public string Token
         {
             get { return _token; }
         }
@@ -784,7 +781,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Interpret current token as integer literal.
         /// </summary>
         /// <returns></returns>
-        internal int GetTokenValueAsInt()
+        public int GetTokenValueAsInt()
         {
             if (_symbol == Symbol.IntegerLiteral)
                 return Int32.Parse(_token, CultureInfo.InvariantCulture);
@@ -803,7 +800,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Interpret current token as unsigned integer literal.
         /// </summary>
         /// <returns></returns>
-        internal uint GetTokenValueAsUInt()
+        public uint GetTokenValueAsUInt()
         {
             if (_symbol == Symbol.IntegerLiteral)
                 return UInt32.Parse(_token, CultureInfo.InvariantCulture);
@@ -822,7 +819,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Interpret current token as real literal.
         /// </summary>
         /// <returns></returns>
-        internal double GetTokenValueAsReal()
+        public double GetTokenValueAsReal()
         {
             return Double.Parse(_token, CultureInfo.InvariantCulture);
         }
@@ -830,7 +827,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current character or EOF.
         /// </summary>
-        internal char Char
+        public char Char
         {
             get { return _currChar; }
         }
@@ -838,7 +835,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the character after the current character or EOF.
         /// </summary>
-        internal char NextChar
+        public char NextChar
         {
             get { return _nextChar; }
         }
@@ -846,7 +843,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Move DDL cursor one character further.
         /// </summary>
-        internal char ScanNextChar()
+        public char ScanNextChar()
         {
             if (_ddlLength <= _idx)
             {
@@ -894,7 +891,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Move DDL cursor to the next EOL (or EOF).
         /// </summary>
-        internal void ScanToEol()
+        public void ScanToEol()
         {
             while (!IsEof(_currChar) && _currChar != Chars.LF)
                 ScanNextChar();
@@ -903,7 +900,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Appends current character to the token and reads next character.
         /// </summary>
-        internal char AppendAndScanNextChar()
+        public char AppendAndScanNextChar()
         {
             _token += _currChar;
             return ScanNextChar();
@@ -913,7 +910,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Appends all next characters to current token until end of line or end of file is reached.
         /// CR/LF or EOF is not part of the token.
         /// </summary>
-        internal void AppendAndScanToEol()
+        public void AppendAndScanToEol()
         {
             char ch = ScanNextChar();
             while (ch != Chars.Null && ch != Chars.CR && ch != Chars.LF)  //BUG Chars.Null == CharLF
@@ -926,7 +923,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character in '0' ... '9'.
         /// </summary>
-        internal static bool IsDigit(char ch)
+        public static bool IsDigit(char ch)
         {
             return char.IsDigit(ch);
         }
@@ -934,7 +931,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character a hexadecimal digit.
         /// </summary>
-        internal static bool IsHexDigit(char ch)
+        public static bool IsHexDigit(char ch)
         {
             return Char.IsDigit(ch) || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f');
         }
@@ -942,7 +939,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character an octal digit.
         /// </summary>
-        internal static bool IsOctDigit(char ch)
+        public static bool IsOctDigit(char ch)
         {
             return Char.IsDigit(ch) && ch < '8';
         }
@@ -950,7 +947,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character an alphabetic letter.
         /// </summary>
-        internal static bool IsLetter(char ch)
+        public static bool IsLetter(char ch)
         {
             return Char.IsLetter(ch);
         }
@@ -958,7 +955,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character a white space.
         /// </summary>
-        internal static bool IsWhiteSpace(char ch)
+        public static bool IsWhiteSpace(char ch)
         {
             return Char.IsWhiteSpace(ch);
         }
@@ -967,7 +964,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// Is character an identifier character. First character can be letter or underscore, following
         /// letters, digits or underscores.
         /// </summary>
-        internal static bool IsIdentifierChar(char ch, bool firstChar) //IsId..Char
+        public static bool IsIdentifierChar(char ch, bool firstChar) //IsId..Char
         {
             if (firstChar)
                 return Char.IsLetter(ch) | ch == '_';
@@ -978,35 +975,35 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Is character the end of file character.
         /// </summary>
-        internal static bool IsEof(char ch)
+        public static bool IsEof(char ch)
         {
             return ch == Chars.Null;
         }
 
-        //internal bool IsNumber();
-        //internal bool IsFormat();
-        //internal bool IsParagraphFormat(Symbol* _docSym /*= null*/);
-        //internal bool IsField();
-        //internal bool IsFieldSpecifier();
-        //internal bool IsSymbol();
+        //public bool IsNumber();
+        //public bool IsFormat();
+        //public bool IsParagraphFormat(Symbol* _docSym /*= null*/);
+        //public bool IsField();
+        //public bool IsFieldSpecifier();
+        //public bool IsSymbol();
         ////bool IsSymbolSpecifier();
-        //internal bool IsFootnote();
-        //internal bool IsComment();
-        //internal bool IsInlineShape();
+        //public bool IsFootnote();
+        //public bool IsComment();
+        //public bool IsInlineShape();
         //
-        //internal bool IsValueSymbole();
-        //internal bool IsScriptSymbole(Symbol _docSym);
-        //internal bool IsParagraphToken();
-        //internal bool IsExtendedParagraphToken();
-        //internal bool IsParagraphElement();
-        //internal bool IsHardHyphen();
-        //internal bool IsNewLine();
-        //internal bool IsWhiteSpace(Symbol _docSym);
+        //public bool IsValueSymbole();
+        //public bool IsScriptSymbole(Symbol _docSym);
+        //public bool IsParagraphToken();
+        //public bool IsExtendedParagraphToken();
+        //public bool IsParagraphElement();
+        //public bool IsHardHyphen();
+        //public bool IsNewLine();
+        //public bool IsWhiteSpace(Symbol _docSym);
 
         /// <summary>
         /// Determines whether the given symbol is a valid keyword for a document element.
         /// </summary>
-        internal static bool IsDocumentElement(Symbol symbol)
+        public static bool IsDocumentElement(Symbol symbol)
         {
             switch (symbol)
             {
@@ -1025,7 +1022,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Determines whether the given symbol is a valid keyword for a section element.
         /// </summary>
-        internal static bool IsSectionElement(Symbol symbol)
+        public static bool IsSectionElement(Symbol symbol)
         {
             switch (symbol)
             {
@@ -1052,7 +1049,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Determines whether the given symbol is a valid keyword for a paragraph element.
         /// </summary>
-        internal static bool IsParagraphElement(Symbol symbol)
+        public static bool IsParagraphElement(Symbol symbol)
         {
             switch (symbol)
             {
@@ -1082,7 +1079,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Determines whether the given symbol is a valid keyword for a header or footer element.
         /// </summary>
-        internal static bool IsHeaderFooterElement(Symbol symbol)
+        public static bool IsHeaderFooterElement(Symbol symbol)
         {
             // All paragraph elements.
             if (IsParagraphElement(symbol))
@@ -1102,7 +1099,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Determines whether the given symbol is a valid keyword for a footnote element.
         /// </summary>
-        internal static bool IsFootnoteElement(Symbol symbol)
+        public static bool IsFootnoteElement(Symbol symbol)
         {
             // All paragraph elements except footnote.
             if (IsParagraphElement(symbol))
@@ -1117,7 +1114,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current filename of the document.
         /// </summary>
-        internal string DocumentFileName
+        public string DocumentFileName
         {
             get { return _documentFileName; }
         }
@@ -1125,7 +1122,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current path of the document.
         /// </summary>
-        internal string DocumentPath
+        public string DocumentPath
         {
             get { return _documentPath; }
         }
@@ -1133,7 +1130,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current scanner line in the document.
         /// </summary>
-        internal int CurrentLine
+        public int CurrentLine
         {
             get { return _nCurDocumentLine; }
         }
@@ -1141,7 +1138,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         /// <summary>
         /// Gets the current scanner column in the document.
         /// </summary>
-        internal int CurrentLinePos
+        public int CurrentLinePos
         {
             get { return _nCurDocumentLinePos; }
         }
@@ -1561,7 +1558,6 @@ namespace MigraDoc.DocumentObjectModel.IO
         string _token = "";
         Symbol _symbol = Symbol.None;
         Symbol _prevSymbol = Symbol.None;
-        TokenType _tokenType = TokenType.None;
         bool _emptyLine;
 
         DdlReaderErrors _errors;

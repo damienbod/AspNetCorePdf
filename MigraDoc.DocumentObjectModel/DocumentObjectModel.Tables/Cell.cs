@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
@@ -52,7 +52,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Initializes a new instance of the Cell class with the specified parent.
         /// </summary>
-        internal Cell(DocumentObject parent) : base(parent) { }
+        public Cell(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -98,7 +98,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Resets the cached values.
         /// </summary>
-        internal override void ResetCachedValues()
+        public override void ResetCachedValues()
         {
             base.ResetCachedValues();
             _row = null;
@@ -253,7 +253,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets the ParagraphFormat object of the paragraph.
@@ -268,7 +268,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets or sets the vertical alignment of the cell.
@@ -279,7 +279,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _verticalAlignment.Value = (int)value; }
         }
         [DV(Type = typeof(VerticalAlignment))]
-        internal NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
+        public NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
 
         /// <summary>
         /// Gets the Borders object.
@@ -303,7 +303,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal Borders _borders;
+        public Borders _borders;
 
         /// <summary>
         /// Gets the shading object.
@@ -318,7 +318,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal Shading _shading;
+        public Shading _shading;
 
         /// <summary>
         /// Specifies if the Cell should be rendered as a rounded corner.
@@ -332,7 +332,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal RoundedCorner _roundedCorner;
+        public RoundedCorner _roundedCorner;
 
         /// <summary>
         /// Gets or sets the number of cells to be merged right.
@@ -343,7 +343,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _mergeRight.Value = value; }
         }
         [DV]
-        internal NInt _mergeRight = NInt.NullValue;
+        public NInt _mergeRight = NInt.NullValue;
 
         /// <summary>
         /// Gets or sets the number of cells to be merged down.
@@ -354,7 +354,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _mergeDown.Value = value; }
         }
         [DV]
-        internal NInt _mergeDown = NInt.NullValue;
+        public NInt _mergeDown = NInt.NullValue;
 
         /// <summary>
         /// Gets the collection of document objects that defines the cell.
@@ -369,7 +369,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal DocumentElements _elements;
+        public DocumentElements _elements;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -380,14 +380,14 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Cell into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\cell");
@@ -440,7 +440,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Cell))); }
         }

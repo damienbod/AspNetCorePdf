@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the ParagraphFormat class with the specified parent.
         /// </summary>
-        internal ParagraphFormat(DocumentObject parent) : base(parent) { }
+        public ParagraphFormat(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -162,7 +162,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _alignment.Value = (int)value; }
         }
         [DV(Type = typeof(ParagraphAlignment))]
-        internal NEnum _alignment = NEnum.NullValue(typeof(ParagraphAlignment));
+        public NEnum _alignment = NEnum.NullValue(typeof(ParagraphAlignment));
 
         /// <summary>
         /// Gets the Borders object.
@@ -177,7 +177,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Borders _borders;
+        public Borders _borders;
 
         /// <summary>
         /// Gets or sets the indent of the first line in the paragraph.
@@ -188,7 +188,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _firstLineIndent = value; }
         }
         [DV]
-        internal Unit _firstLineIndent = Unit.NullValue;
+        public Unit _firstLineIndent = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the Font object.
@@ -203,7 +203,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
 
         /// <summary>
         /// Gets or sets a value indicating whether to keep all the paragraph's lines on the same page.
@@ -214,7 +214,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _keepTogether.Value = value; }
         }
         [DV]
-        internal NBool _keepTogether = NBool.NullValue;
+        public NBool _keepTogether = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets a value indicating whether this and the next paragraph stay on the same page.
@@ -225,7 +225,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _keepWithNext.Value = value; }
         }
         [DV]
-        internal NBool _keepWithNext = NBool.NullValue;
+        public NBool _keepWithNext = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the left indent of the paragraph.
@@ -236,7 +236,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _leftIndent = value; }
         }
         [DV]
-        internal Unit _leftIndent = Unit.NullValue;
+        public Unit _leftIndent = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the space between lines on the paragraph.
@@ -247,7 +247,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _lineSpacing = value; }
         }
         [DV]
-        internal Unit _lineSpacing = Unit.NullValue;
+        public Unit _lineSpacing = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the rule which is used to define the line spacing.
@@ -258,7 +258,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _lineSpacingRule.Value = (int)value; }
         }
         [DV(Type = typeof(LineSpacingRule))]
-        internal NEnum _lineSpacingRule = NEnum.NullValue(typeof(LineSpacingRule));
+        public NEnum _lineSpacingRule = NEnum.NullValue(typeof(LineSpacingRule));
 
         /// <summary>
         /// Gets or sets the ListInfo object of the paragraph.
@@ -273,7 +273,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ListInfo _listInfo;
+        public ListInfo _listInfo;
 
         /// <summary>
         /// Gets or sets the out line level of the paragraph.
@@ -284,7 +284,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _outlineLevel.Value = (int)value; }
         }
         [DV(Type = typeof(OutlineLevel))]
-        internal NEnum _outlineLevel = NEnum.NullValue(typeof(OutlineLevel));
+        public NEnum _outlineLevel = NEnum.NullValue(typeof(OutlineLevel));
 
         /// <summary>
         /// Gets or sets a value indicating whether a page break is inserted before the paragraph.
@@ -295,7 +295,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _pageBreakBefore.Value = value; }
         }
         [DV]
-        internal NBool _pageBreakBefore = NBool.NullValue;
+        public NBool _pageBreakBefore = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the right indent of the paragraph.
@@ -306,7 +306,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _rightIndent = value; }
         }
         [DV]
-        internal Unit _rightIndent = Unit.NullValue;
+        public Unit _rightIndent = Unit.NullValue;
 
         /// <summary>
         /// Gets the shading object.
@@ -321,7 +321,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Shading _shading;
+        public Shading _shading;
 
         /// <summary>
         /// Gets or sets the space that's inserted after the paragraph.
@@ -332,7 +332,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _spaceAfter = value; }
         }
         [DV]
-        internal Unit _spaceAfter = Unit.NullValue;
+        public Unit _spaceAfter = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the space that's inserted before the paragraph.
@@ -343,7 +343,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _spaceBefore = value; }
         }
         [DV]
-        internal Unit _spaceBefore = Unit.NullValue;
+        public Unit _spaceBefore = Unit.NullValue;
 
         /// <summary>
         /// Indicates whether the ParagraphFormat has a TabStops collection.
@@ -366,7 +366,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal TabStops _tabStops;
+        public TabStops _tabStops;
 
         /// <summary>
         /// Gets or sets a value indicating whether a line from the paragraph stays alone in a page.
@@ -377,14 +377,14 @@ namespace MigraDoc.DocumentObjectModel
             set { _widowControl.Value = value; }
         }
         [DV]
-        internal NBool _widowControl = NBool.NullValue;
+        public NBool _widowControl = NBool.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts ParagraphFormat into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_parent is Style)
                 Serialize(serializer, "ParagraphFormat", null);
@@ -395,7 +395,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts ParagraphFormat into DDL.
         /// </summary>
-        internal void Serialize(Serializer serializer, string name, ParagraphFormat refFormat)
+        public void Serialize(Serializer serializer, string name, ParagraphFormat refFormat)
         {
             int pos = serializer.BeginContent(name);
 
@@ -403,8 +403,8 @@ namespace MigraDoc.DocumentObjectModel
                 Font.Serialize(serializer);
 
             // If a refFormat is specified, it is important to compare the fields and not the properties.
-            // Only the fields holds the internal information whether a value is NULL. In contrast to the
-            // Efw.Application framework the nullable values and all the meta stuff is kept internal to
+            // Only the fields holds the public information whether a value is NULL. In contrast to the
+            // Efw.Application framework the nullable values and all the meta stuff is kept public to
             // give the user the illusion of simplicity.
 
             if (!_alignment.IsNull && (refFormat == null || (_alignment != refFormat._alignment)))
@@ -469,7 +469,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(ParagraphFormat))); }
         }

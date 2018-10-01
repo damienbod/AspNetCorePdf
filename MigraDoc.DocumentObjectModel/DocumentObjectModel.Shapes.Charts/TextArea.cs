@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Visitors;
 
@@ -44,13 +44,13 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the TextArea class.
         /// </summary>
-        internal TextArea()
+        public TextArea()
         { }
 
         /// <summary>
         /// Initializes a new instance of the TextArea class with the specified parent.
         /// </summary>
-        internal TextArea(DocumentObject parent) : base(parent) { }
+        public TextArea(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -173,7 +173,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _height = value; }
         }
         [DV]
-        internal Unit _height = Unit.NullValue;
+        public Unit _height = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the width of the area.
@@ -184,7 +184,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the default style name of the area.
@@ -195,7 +195,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the default paragraph format of the area.
@@ -210,7 +210,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets the line format of the area's border.
@@ -225,7 +225,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the background filling of the area.
@@ -240,7 +240,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal FillFormat _fillFormat;
+        public FillFormat _fillFormat;
 
         /// <summary>
         /// Gets or sets the left padding of the area.
@@ -251,7 +251,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _leftPadding = value; }
         }
         [DV]
-        internal Unit _leftPadding = Unit.NullValue;
+        public Unit _leftPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the right padding of the area.
@@ -262,7 +262,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _rightPadding = value; }
         }
         [DV]
-        internal Unit _rightPadding = Unit.NullValue;
+        public Unit _rightPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the top padding of the area.
@@ -273,7 +273,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _topPadding = value; }
         }
         [DV]
-        internal Unit _topPadding = Unit.NullValue;
+        public Unit _topPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the bottom padding of the area.
@@ -284,7 +284,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _bottomPadding = value; }
         }
         [DV]
-        internal Unit _bottomPadding = Unit.NullValue;
+        public Unit _bottomPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the Vertical alignment of the area.
@@ -295,7 +295,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _verticalAlignment.Value = (int)value; }
         }
         [DV(Type = typeof(VerticalAlignment))]
-        internal NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
+        public NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
 
         /// <summary>
         /// Gets the document objects that creates the text area.
@@ -310,14 +310,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal DocumentElements _elements;
+        public DocumentElements _elements;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TextArea into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             Chart chartObject = _parent as Chart;
 
@@ -362,7 +362,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(TextArea))); }
         }

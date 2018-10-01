@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the Chart class with the specified parent.
         /// </summary>
-        internal Chart(DocumentObject parent) : base(parent) { }
+        public Chart(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Chart class with the specified chart type.
@@ -161,7 +161,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _type.Value = (int)value; }
         }
         [DV(Type = typeof(ChartType))]
-        internal NEnum _type = NEnum.NullValue(typeof(ChartType));
+        public NEnum _type = NEnum.NullValue(typeof(ChartType));
 
         /// <summary>
         /// Gets or sets the default style name of the whole chart.
@@ -172,7 +172,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets the default paragraph format of the whole chart.
@@ -187,7 +187,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets the X-Axis of the Chart.
@@ -202,7 +202,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Axis _xAxis;
+        public Axis _xAxis;
 
         /// <summary>
         /// Gets the Y-Axis of the Chart.
@@ -217,7 +217,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Axis _yAxis;
+        public Axis _yAxis;
 
         /// <summary>
         /// Gets the Z-Axis of the Chart.
@@ -232,7 +232,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Axis _zAxis;
+        public Axis _zAxis;
 
         /// <summary>
         /// Gets the collection of the data series.
@@ -247,7 +247,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV(ItemType = typeof(Series))]
-        internal SeriesCollection _seriesCollection;
+        public SeriesCollection _seriesCollection;
 
         /// <summary>
         /// Gets the collection of the values written on the X-Axis.
@@ -262,7 +262,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV(ItemType = typeof(Series))]
-        internal XValues _xValues;
+        public XValues _xValues;
 
         /// <summary>
         /// Gets the header area of the chart.
@@ -277,7 +277,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _headerArea;
+        public TextArea _headerArea;
 
         /// <summary>
         /// Gets the bottom area of the chart.
@@ -292,7 +292,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _bottomArea;
+        public TextArea _bottomArea;
 
         /// <summary>
         /// Gets the top area of the chart.
@@ -307,7 +307,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _topArea;
+        public TextArea _topArea;
 
         /// <summary>
         /// Gets the footer area of the chart.
@@ -322,7 +322,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _footerArea;
+        public TextArea _footerArea;
 
         /// <summary>
         /// Gets the left area of the chart.
@@ -337,7 +337,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _leftArea;
+        public TextArea _leftArea;
 
         /// <summary>
         /// Gets the right area of the chart.
@@ -352,7 +352,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TextArea _rightArea;
+        public TextArea _rightArea;
 
         /// <summary>
         /// Gets the plot (drawing) area of the chart.
@@ -367,7 +367,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal PlotArea _plotArea;
+        public PlotArea _plotArea;
 
         /// <summary>
         /// Gets or sets a value defining how blanks in the data series should be shown.
@@ -378,7 +378,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _displayBlanksAs.Value = (int)value; }
         }
         [DV(Type = typeof(BlankType))]
-        internal NEnum _displayBlanksAs = NEnum.NullValue(typeof(BlankType));
+        public NEnum _displayBlanksAs = NEnum.NullValue(typeof(BlankType));
 
         /// <summary>
         /// Gets or sets whether XAxis Labels should be merged.
@@ -389,7 +389,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _pivotChart.Value = value; }
         }
         [DV]
-        internal NBool _pivotChart = NBool.NullValue;
+        public NBool _pivotChart = NBool.NullValue;
 
         /// <summary>
         /// Gets the DataLabel of the chart.
@@ -404,7 +404,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal DataLabel _dataLabel;
+        public DataLabel _dataLabel;
 
         /// <summary>
         /// Gets or sets whether the chart has a DataLabel.
@@ -415,13 +415,13 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _hasDataLabel.Value = value; }
         }
         [DV]
-        internal NBool _hasDataLabel = NBool.NullValue;
+        public NBool _hasDataLabel = NBool.NullValue;
         #endregion
 
         /// <summary>
         /// Determines the type of the given axis.
         /// </summary>
-        internal string CheckAxis(Axis axis)
+        public string CheckAxis(Axis axis)
         {
             if ((_xAxis != null) && (axis == _xAxis))
                 return "xaxis";
@@ -436,7 +436,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Determines the type of the given textarea.
         /// </summary>
-        internal string CheckTextArea(TextArea textArea)
+        public string CheckTextArea(TextArea textArea)
         {
             if ((_headerArea != null) && (textArea == _headerArea))
                 return "headerarea";
@@ -454,11 +454,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             return "";
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Chart into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\chart(" + Type + ")");
             int pos = serializer.BeginAttributes();
@@ -542,7 +542,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Chart))); }
         }

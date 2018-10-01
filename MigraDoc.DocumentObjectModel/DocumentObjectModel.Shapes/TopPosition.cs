@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -193,7 +193,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         {
             get { return _position; }
         }
-        internal Unit _position;
+        public Unit _position;
 
         /// <summary>
         /// Gets the value of the position.
@@ -202,7 +202,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         {
             get { return _shapePosition; }
         }
-        internal ShapePosition _shapePosition;
+        public ShapePosition _shapePosition;
 
         /// <summary>
         /// Parses the specified value.
@@ -219,11 +219,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             return (ShapePosition)Enum.Parse(typeof(ShapePosition), value, true);
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TopPosition into DDL.
         /// </summary>  
-        internal void Serialize(Serializer serializer)
+        public void Serialize(Serializer serializer)
         {
             if (_shapePosition == ShapePosition.Undefined)
                 serializer.WriteSimpleAttribute("Top", Position);
@@ -235,6 +235,6 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Represents the unitialized TopPosition object.
         /// </summary>
-        internal static readonly TopPosition NullValue = new TopPosition();
+        public static readonly TopPosition NullValue = new TopPosition();
     }
 }

@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the Shape class with the specified parent.
         /// </summary>
-        internal Shape(DocumentObject parent) : base(parent) { }
+        public Shape(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -98,7 +98,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             }
         }
         [DV]
-        internal WrapFormat _wrapFormat;
+        public WrapFormat _wrapFormat;
 
         /// <summary>
         /// Gets or sets the reference point of the Top property.
@@ -109,7 +109,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _relativeVertical.Value = (int)value; }
         }
         [DV(Type = typeof(RelativeVertical))]
-        internal NEnum _relativeVertical = NEnum.NullValue(typeof(RelativeVertical));
+        public NEnum _relativeVertical = NEnum.NullValue(typeof(RelativeVertical));
 
         /// <summary>
         /// Gets or sets the reference point of the Left property.
@@ -120,7 +120,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _relativeHorizontal.Value = (int)value; }
         }
         [DV(Type = typeof(RelativeHorizontal))]
-        internal NEnum _relativeHorizontal = NEnum.NullValue(typeof(RelativeHorizontal));
+        public NEnum _relativeHorizontal = NEnum.NullValue(typeof(RelativeHorizontal));
 
         /// <summary>
         /// Gets or sets the position of the top side of the shape.
@@ -131,7 +131,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _top = value; }
         }
         [DV]
-        internal TopPosition _top = TopPosition.NullValue;
+        public TopPosition _top = TopPosition.NullValue;
 
         /// <summary>
         /// Gets or sets the position of the left side of the shape.
@@ -142,7 +142,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _left = value; }
         }
         [DV]
-        internal LeftPosition _left = LeftPosition.NullValue;
+        public LeftPosition _left = LeftPosition.NullValue;
 
         /// <summary>
         /// Gets the line format of the shape's border.
@@ -157,7 +157,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the background filling format of the shape.
@@ -172,7 +172,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             }
         }
         [DV]
-        internal FillFormat _fillFormat;
+        public FillFormat _fillFormat;
 
         /// <summary>
         /// Gets or sets the height of the shape.
@@ -183,7 +183,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _height = value; }
         }
         [DV]
-        internal Unit _height = Unit.NullValue;
+        public Unit _height = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the width of the shape.
@@ -194,14 +194,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Shape into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (!_height.IsNull)
                 serializer.WriteSimpleAttribute("Height", Height);
@@ -226,7 +226,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Shape))); }
         }

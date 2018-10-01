@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the Gridlines class with the specified parent.
         /// </summary>
-        internal Gridlines(DocumentObject parent) : base(parent) { }
+        public Gridlines(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -89,14 +89,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Gridlines into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             Axis axisObject = _parent as Axis;
 
@@ -111,7 +111,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Gridlines))); }
         }

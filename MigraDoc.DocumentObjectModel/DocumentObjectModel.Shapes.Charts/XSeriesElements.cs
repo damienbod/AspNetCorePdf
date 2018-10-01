@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -82,11 +82,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts XSeriesElements into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int count = Count;
             for (int index = 0; index < count; index++)
@@ -102,7 +102,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(XSeriesElements))); }
         }

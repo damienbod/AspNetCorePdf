@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -54,7 +54,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the TabStops class with the specified parent.
         /// </summary>
-        internal TabStops(DocumentObject parent) : base(parent) { }
+        public TabStops(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -203,14 +203,14 @@ namespace MigraDoc.DocumentObjectModel
         {
             get { return _fClearAll; }
         }
-        internal bool _fClearAll = false;
+        public bool _fClearAll = false;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TabStops into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_fClearAll)
                 serializer.WriteLine("TabStops = null");
@@ -237,7 +237,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(TabStops))); }
         }

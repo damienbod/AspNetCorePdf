@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the Legend class with the specified parent.
         /// </summary>
-        internal Legend(DocumentObject parent) : base(parent) { }
+        public Legend(DocumentObject parent) : base(parent) { }
 
         #region Serialization
         /// <summary>
@@ -90,7 +90,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets the paragraph format of the legend's text.
@@ -105,7 +105,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets the line format of the legend's border.
@@ -120,14 +120,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Legend into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\legend");
             int pos = serializer.BeginAttributes();
@@ -156,7 +156,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Legend))); }
         }

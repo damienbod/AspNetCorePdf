@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Tables;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the AxisTitle class with the specified parent.
         /// </summary>
-        internal AxisTitle(DocumentObject parent) : base(parent) { }
+        public AxisTitle(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -86,7 +86,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the caption of the title.
@@ -97,7 +97,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _caption.Value = value; }
         }
         [DV]
-        internal NString _caption = NString.NullValue;
+        public NString _caption = NString.NullValue;
 
         /// <summary>
         /// Gets the font object of the title.
@@ -112,7 +112,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
 
         /// <summary>
         /// Gets or sets the orientation of the caption.
@@ -123,7 +123,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _orientation = value; }
         }
         [DV]
-        internal Unit _orientation = Unit.NullValue;
+        public Unit _orientation = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the alignment of the caption.
@@ -134,7 +134,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _alignment.Value = (int)value; }
         }
         [DV(Type = typeof(HorizontalAlignment))]
-        internal NEnum _alignment = NEnum.NullValue(typeof(HorizontalAlignment));
+        public NEnum _alignment = NEnum.NullValue(typeof(HorizontalAlignment));
 
         /// <summary>
         /// Gets or sets the alignment of the caption.
@@ -145,14 +145,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _verticalAlignment.Value = (int)value; }
         }
         [DV(Type = typeof(VerticalAlignment))]
-        internal NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
+        public NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts AxisTitle into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int pos = serializer.BeginContent("Title");
 
@@ -180,7 +180,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(AxisTitle))); }
         }

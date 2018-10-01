@@ -45,7 +45,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the DocumentObjectCollection class.
         /// </summary>
-        internal DocumentObjectCollection()
+        public DocumentObjectCollection()
         {
             _elements = new List<object>();
         }
@@ -53,7 +53,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the DocumentObjectCollection class with the specified parent.
         /// </summary>
-        internal DocumentObjectCollection(DocumentObject parent)
+        public DocumentObjectCollection(DocumentObject parent)
             : base(parent)
         {
             _elements = new List<object>();

@@ -14,6 +14,6 @@ namespace AspNetCorePdf.PdfProvider.DataModel
         public string Description { get; set; }
 
         public List<ItemsToDisplay>  DisplayListItems { get; set; }
-        public object DocumentName { get; internal set; }
+        public string DocumentName { get; set; }
     }
 }

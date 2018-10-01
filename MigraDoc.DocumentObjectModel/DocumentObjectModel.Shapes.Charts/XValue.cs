@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -43,7 +43,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the XValue class.
         /// </summary>
-        internal XValue()
+        public XValue()
         { }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// The actual value of the XValue.
         /// </summary>
         [DV] // No Get- and Set -Property.
-        protected internal string Value;
+        public string Value;
 
         #region Methods
         /// <summary>
@@ -74,11 +74,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts XValue into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.Write("\"" + Value + "\", ");
         }
@@ -86,7 +86,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(XValue))); }
         }

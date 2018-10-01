@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 #pragma warning disable 1591
 
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the PictureFormat class with the specified parent.
         /// </summary>
-        internal PictureFormat(DocumentObject parent) : base(parent) { }
+        public PictureFormat(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -109,11 +109,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         protected Unit _cropBottom = Unit.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts PictureFormat into DDL
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.BeginContent("PictureFormat");
             if (!_cropLeft.IsNull)
@@ -130,7 +130,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(PictureFormat))); }
         }

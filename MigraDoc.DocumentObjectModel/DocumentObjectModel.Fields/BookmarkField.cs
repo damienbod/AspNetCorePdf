@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Fields
 {
@@ -43,13 +43,13 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the BookmarkField class.
         /// </summary>
-        internal BookmarkField()
+        public BookmarkField()
         { }
 
         /// <summary>
         /// Initializes a new instance of the BookmarkField class with the specified parent.
         /// </summary>
-        internal BookmarkField(DocumentObject parent) : base(parent) { }
+        public BookmarkField(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the BookmarkField class with the necessary bookmark name.
@@ -81,14 +81,14 @@ namespace MigraDoc.DocumentObjectModel.Fields
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts BookmarkField into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_name.Value == string.Empty)
                 throw new InvalidOperationException(DomSR.MissingObligatoryProperty("Name", "BookmarkField"));
@@ -107,7 +107,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(BookmarkField))); }
         }

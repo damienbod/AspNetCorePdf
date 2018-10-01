@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Shapes;
@@ -52,13 +52,13 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Hyperlink class with the specified parent.
         /// </summary>
-        internal Hyperlink(DocumentObject parent) : base(parent) { }
+        public Hyperlink(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Hyperlink class with the text the hyperlink shall content.
         /// The type will be treated as Local by default.
         /// </summary>
-        internal Hyperlink(string name, string text)
+        public Hyperlink(string name, string text)
             : this()
         {
             Name = name;
@@ -69,7 +69,7 @@ namespace MigraDoc.DocumentObjectModel
         /// Initializes a new instance of the Hyperlink class with the type and text the hyperlink shall
         /// represent.
         /// </summary>
-        internal Hyperlink(string name, HyperlinkType type, string text)
+        public Hyperlink(string name, HyperlinkType type, string text)
             : this()
         {
             Name = name;
@@ -442,7 +442,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
 
         /// <summary>
         /// Gets or sets the target name of the Hyperlink, e.g. an URL or a bookmark's name.
@@ -453,7 +453,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the target type of the Hyperlink.
@@ -464,7 +464,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _type.Value = (int)value; }
         }
         [DV(Type = typeof(HyperlinkType))]
-        internal NEnum _type = NEnum.NullValue(typeof(HyperlinkType));
+        public NEnum _type = NEnum.NullValue(typeof(HyperlinkType));
 
         /// <summary>
         /// Gets the ParagraphElements of the Hyperlink specifying its 'clickable area'.
@@ -479,14 +479,14 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal ParagraphElements _elements;
+        public ParagraphElements _elements;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Hyperlink into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_name.Value == string.Empty)
                 throw new InvalidOperationException(DomSR.MissingObligatoryProperty("Name", "Hyperlink"));
@@ -505,7 +505,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Hyperlink))); }
         }

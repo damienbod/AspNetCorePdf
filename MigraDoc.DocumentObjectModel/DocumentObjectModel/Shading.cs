@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Shading class with the specified parent.
         /// </summary>
-        internal Shading(DocumentObject parent) : base(parent) { }
+        public Shading(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -79,7 +79,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _visible.Value = value; }
         }
         [DV]
-        internal NBool _visible = NBool.NullValue;
+        public NBool _visible = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the shading color.
@@ -90,7 +90,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets the information if the shading is marked as cleared. Additionally 'Shading = null'
@@ -100,14 +100,14 @@ namespace MigraDoc.DocumentObjectModel
         {
             get { return _isCleared; }
         }
-        internal bool _isCleared = false;
+        public bool _isCleared = false;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Shading into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (_isCleared)
                 serializer.WriteLine("Shading = null");
@@ -126,7 +126,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Shading))); }
         }

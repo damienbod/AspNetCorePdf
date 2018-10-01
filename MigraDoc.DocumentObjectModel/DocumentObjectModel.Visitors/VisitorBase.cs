@@ -39,7 +39,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
     /// <summary>
     /// Summary description for VisitorBase.
     /// </summary>
-    internal abstract class VisitorBase : DocumentObjectVisitor
+    public abstract class VisitorBase : DocumentObjectVisitor
     {
         public override void Visit(DocumentObject documentObject)
         {
@@ -375,7 +375,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
 
 
         #region Chart
-        internal override void VisitChart(Chart chart)
+        public override void VisitChart(Chart chart)
         {
             Document document = chart.Document;
             if (chart._style.IsNull)
@@ -406,17 +406,17 @@ namespace MigraDoc.DocumentObjectModel.Visitors
         #endregion
 
         #region Document
-        internal override void VisitDocument(Document document)
+        public override void VisitDocument(Document document)
         {
         }
 
-        internal override void VisitDocumentElements(DocumentElements elements)
+        public override void VisitDocumentElements(DocumentElements elements)
         {
         }
         #endregion
 
         #region Format
-        internal override void VisitStyle(Style style)
+        public override void VisitStyle(Style style)
         {
             Style baseStyle = style.GetBaseStyle();
             if (baseStyle != null && baseStyle._paragraphFormat != null)
@@ -428,13 +428,13 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             }
         }
 
-        internal override void VisitStyles(Styles styles)
+        public override void VisitStyles(Styles styles)
         {
         }
         #endregion
 
         #region Paragraph
-        internal override void VisitFootnote(Footnote footnote)
+        public override void VisitFootnote(Footnote footnote)
         {
             Document document = footnote.Document;
 
@@ -459,7 +459,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
 
         }
 
-        internal override void VisitParagraph(Paragraph paragraph)
+        public override void VisitParagraph(Paragraph paragraph)
         {
             Document document = paragraph.Document;
 
@@ -522,7 +522,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
         #endregion
 
         #region Section
-        internal override void VisitHeaderFooter(HeaderFooter headerFooter)
+        public override void VisitHeaderFooter(HeaderFooter headerFooter)
         {
             Document document = headerFooter.Document;
             string styleString;
@@ -550,11 +550,11 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                 FlattenParagraphFormat(headerFooter._format, format);
         }
 
-        internal override void VisitHeadersFooters(HeadersFooters headersFooters)
+        public override void VisitHeadersFooters(HeadersFooters headersFooters)
         {
         }
 
-        internal override void VisitSection(Section section)
+        public override void VisitSection(Section section)
         {
             Section prevSec = section.PreviousSection();
             PageSetup prevPageSetup = PageSetup.DefaultPageSetup;
@@ -583,13 +583,13 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                 FlattenPageSetup(section._pageSetup, prevPageSetup);
         }
 
-        internal override void VisitSections(Sections sections)
+        public override void VisitSections(Sections sections)
         {
         }
         #endregion
 
         #region Shape
-        internal override void VisitTextFrame(TextFrame textFrame)
+        public override void VisitTextFrame(TextFrame textFrame)
         {
             if (textFrame._height.IsNull)
                 textFrame._height = Unit.FromInch(1);
@@ -599,12 +599,12 @@ namespace MigraDoc.DocumentObjectModel.Visitors
         #endregion
 
         #region Table
-        internal override void VisitCell(Cell cell)
+        public override void VisitCell(Cell cell)
         {
             // format, shading and borders are already processed.
         }
 
-        internal override void VisitColumns(Columns columns)
+        public override void VisitColumns(Columns columns)
         {
             foreach (Column col in columns)
             {
@@ -616,7 +616,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             }
         }
 
-        internal override void VisitRow(Row row)
+        public override void VisitRow(Row row)
         {
             foreach (Cell cell in row.Cells)
             {
@@ -625,7 +625,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             }
         }
 
-        internal override void VisitRows(Rows rows)
+        public override void VisitRows(Rows rows)
         {
             foreach (Row row in rows)
             {
@@ -654,7 +654,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                 return style._paragraphFormat;
         }
 
-        internal override void VisitTable(Table table)
+        public override void VisitTable(Table table)
         {
             Document document = table.Document;
 
@@ -832,7 +832,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
 
         #endregion
 
-        internal override void VisitLegend(Legend legend)
+        public override void VisitLegend(Legend legend)
         {
             ParagraphFormat parentFormat;
             if (!legend._style.IsNull)
@@ -855,7 +855,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                 FlattenParagraphFormat(legend._format, parentFormat);
         }
 
-        internal override void VisitTextArea(TextArea textArea)
+        public override void VisitTextArea(TextArea textArea)
         {
             if (textArea == null || textArea._elements == null)
                 return;

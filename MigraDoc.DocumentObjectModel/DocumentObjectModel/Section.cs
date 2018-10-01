@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
@@ -53,7 +53,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Section class with the specified parent.
         /// </summary>
-        internal Section(DocumentObject parent) : base(parent) { }
+        public Section(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -232,7 +232,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal PageSetup _pageSetup;
+        public PageSetup _pageSetup;
 
         /// <summary>
         /// Gets the HeadersFooters collection containing the headers.
@@ -247,7 +247,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal HeadersFooters _headers;
+        public HeadersFooters _headers;
 
         /// <summary>
         /// Gets the HeadersFooters collection containing the footers.
@@ -262,7 +262,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal HeadersFooters _footers;
+        public HeadersFooters _footers;
 
         /// <summary>
         /// Gets the document elements that build the section's content.
@@ -277,7 +277,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal DocumentElements _elements;
+        public DocumentElements _elements;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -288,7 +288,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
 
         /// <summary>
         /// Gets the last paragraph of this section, or null, if no paragraph exists is this section.
@@ -325,11 +325,11 @@ namespace MigraDoc.DocumentObjectModel
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Section into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\section");
@@ -368,7 +368,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Section))); }
         }

@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -189,7 +189,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Determines whether this instance is null (not set).
         /// </summary>
-        internal bool IsNull
+        public bool IsNull
         {
             get { return this == Empty; }
         }

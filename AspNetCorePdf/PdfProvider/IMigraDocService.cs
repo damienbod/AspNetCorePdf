@@ -2,8 +2,8 @@
 
 namespace AspNetCorePdf.PdfProvider
 {
-    public interface IPdfService
+    public interface IMigraDocService
     {
-        string CreatePdf(PdfData pdfData);
+        string CreateMigraDocPdf(PdfData pdfData);
     }
 }

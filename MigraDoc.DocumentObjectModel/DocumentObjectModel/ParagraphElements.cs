@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Shapes;
 
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the ParagraphElements class with the specified parent.
         /// </summary>
-        internal ParagraphElements(DocumentObject parent) : base(parent) { }
+        public ParagraphElements(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Gets a ParagraphElement by its index.
@@ -430,11 +430,11 @@ namespace MigraDoc.DocumentObjectModel
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts ParagraphElements into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int count = Count;
             for (int index = 0; index < count; ++index)
@@ -447,7 +447,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(ParagraphElements))); }
         }

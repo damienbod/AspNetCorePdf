@@ -34,13 +34,13 @@ using System;
 
 // ReSharper disable InconsistentNaming
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Indicates that this field can be accessed via SetValue and GetValue.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    internal class DVAttribute : Attribute
+    public class DVAttribute : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the DVAttribute class.

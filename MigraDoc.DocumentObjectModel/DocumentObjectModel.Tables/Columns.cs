@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel.Tables
@@ -63,7 +63,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Initializes a new instance of the Columns class with the specified parent.
         /// </summary>
-        internal Columns(DocumentObject parent) : base(parent) { }
+        public Columns(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -114,7 +114,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -125,14 +125,14 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Columns into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\columns");
@@ -167,7 +167,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Columns))); }
         }

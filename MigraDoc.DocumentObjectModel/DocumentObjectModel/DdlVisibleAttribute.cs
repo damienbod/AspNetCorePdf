@@ -38,7 +38,7 @@ namespace MigraDoc.DocumentObjectModel
     /// Under Construction.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    internal class DdlVisibleAttribute : Attribute
+    public class DdlVisibleAttribute : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the DdlVisibleAttribute class.

@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Tables
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Initializes a new instance of the Column class with the specified parent.
         /// </summary>
-        internal Column(DocumentObject parent) : base(parent) { }
+        public Column(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -88,7 +88,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Resets the cached values.
         /// </summary>
-        internal override void ResetCachedValues()
+        public override void ResetCachedValues()
         {
             base.ResetCachedValues();
             _table = null;
@@ -135,7 +135,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal NInt _index = NInt.NullValue;
+        public NInt _index = NInt.NullValue;
 
         /// <summary>
         /// Gets a cell by its row index. The first cell has index 0.
@@ -158,7 +158,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets the default ParagraphFormat for all cells of the column.
@@ -173,7 +173,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets or sets the width of a column.
@@ -184,7 +184,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the default left padding for all cells of the column.
@@ -195,7 +195,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _leftPadding = value; }
         }
         [DV]
-        internal Unit _leftPadding = Unit.NullValue;
+        public Unit _leftPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the default right padding for all cells of the column.
@@ -206,7 +206,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _rightPadding = value; }
         }
         [DV]
-        internal Unit _rightPadding = Unit.NullValue;
+        public Unit _rightPadding = Unit.NullValue;
 
         /// <summary>
         /// Gets the default Borders object for all cells of the column.
@@ -221,7 +221,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal Borders _borders;
+        public Borders _borders;
 
         /// <summary>
         /// Gets or sets the number of columns that should be kept together with
@@ -233,7 +233,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _keepWith.Value = value; }
         }
         [DV]
-        internal NInt _keepWith = NInt.NullValue;
+        public NInt _keepWith = NInt.NullValue;
 
         /// <summary>
         /// Gets or sets a value which define whether the column is a header.
@@ -244,7 +244,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _headingFormat.Value = value; }
         }
         [DV]
-        internal NBool _headingFormat = NBool.NullValue;
+        public NBool _headingFormat = NBool.NullValue;
 
         /// <summary>
         /// Gets the default Shading object for all cells of the column.
@@ -259,7 +259,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             }
         }
         [DV]
-        internal Shading _shading;
+        public Shading _shading;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -270,14 +270,14 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Column into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\column");
@@ -319,7 +319,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Column))); }
         }

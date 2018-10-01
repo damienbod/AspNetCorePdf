@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel
         Tab = 0xF2000001,
         LineBreak = 0xF4000001,
 
-        // for internal use only 
+        // for public use only 
         ParaBreak = 0xF4000007,
         //MarginBreak       = 0xF4000002,
 

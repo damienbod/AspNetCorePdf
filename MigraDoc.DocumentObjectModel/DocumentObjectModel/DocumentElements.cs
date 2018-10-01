@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
@@ -52,7 +52,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the DocumentElements class with the specified parent.
         /// </summary>
-        internal DocumentElements(DocumentObject parent) : base(parent) { }
+        public DocumentElements(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Gets a document object by its index.
@@ -186,11 +186,11 @@ namespace MigraDoc.DocumentObjectModel
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts DocumentElements into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int count = Count;
             if (count == 1 && this[0] is Paragraph)
@@ -229,7 +229,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(DocumentElements))); }
         }

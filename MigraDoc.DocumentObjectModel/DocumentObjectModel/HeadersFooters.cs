@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel
@@ -127,7 +127,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal HeaderFooter _evenPage;
+        public HeaderFooter _evenPage;
 
         /// <summary>
         /// Gets or sets the first page HeaderFooter of the HeadersFooters object.
@@ -142,7 +142,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal HeaderFooter _firstPage;
+        public HeaderFooter _firstPage;
 
         /// <summary>
         /// Gets or sets the primary HeaderFooter of the HeadersFooters object.
@@ -157,14 +157,14 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal HeaderFooter _primary;
+        public HeaderFooter _primary;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts HeadersFooters into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             bool hasPrimary = HasHeaderFooter(HeaderFooterIndex.Primary);
             bool hasEvenPage = HasHeaderFooter(HeaderFooterIndex.EvenPage);
@@ -204,7 +204,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(HeadersFooters))); }
         }

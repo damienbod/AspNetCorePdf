@@ -32,7 +32,7 @@
 
 using System;
 using System.IO;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the Image class with the specified parent.
         /// </summary>
-        internal Image(DocumentObject parent) : base(parent) { }
+        public Image(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Image class from the specified (file) name.
@@ -95,7 +95,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the ScaleWidth of the image.
@@ -107,7 +107,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _scaleWidth.Value = value; }
         }
         [DV]
-        internal NDouble _scaleWidth = NDouble.NullValue;
+        public NDouble _scaleWidth = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets the ScaleHeight of the image.
@@ -119,7 +119,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _scaleHeight.Value = value; }
         }
         [DV]
-        internal NDouble _scaleHeight = NDouble.NullValue;
+        public NDouble _scaleHeight = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets whether the AspectRatio of the image is kept unchanged.
@@ -131,7 +131,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _lockAspectRatio.Value = value; }
         }
         [DV]
-        internal NBool _lockAspectRatio = NBool.NullValue;
+        public NBool _lockAspectRatio = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the PictureFormat for the image
@@ -146,7 +146,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             }
         }
         [DV]
-        internal PictureFormat _pictureFormat;
+        public PictureFormat _pictureFormat;
 
         /// <summary>
         /// Gets or sets a user defined resolution for the image in dots per inch.
@@ -157,14 +157,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _resolution.Value = value; }
         }
         [DV]
-        internal NDouble _resolution = NDouble.NullValue;
+        public NDouble _resolution = NDouble.NullValue;
         //#endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Image into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\image(\"" + _name.Value.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\")");
 
@@ -226,7 +226,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Image))); }
         }

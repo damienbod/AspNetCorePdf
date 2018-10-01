@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the Axis class with the specified parent.
         /// </summary>
-        internal Axis(DocumentObject parent) : base(parent) { }
+        public Axis(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -108,7 +108,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal AxisTitle _title;
+        public AxisTitle _title;
 
         /// <summary>
         /// Gets or sets the minimum value of the axis.
@@ -119,7 +119,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _minimumScale.Value = value; }
         }
         [DV]
-        internal NDouble _minimumScale = NDouble.NullValue;
+        public NDouble _minimumScale = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets the maximum value of the axis.
@@ -130,7 +130,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _maximumScale.Value = value; }
         }
         [DV]
-        internal NDouble _maximumScale = NDouble.NullValue;
+        public NDouble _maximumScale = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets the interval of the primary tick.
@@ -141,7 +141,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _majorTick.Value = value; }
         }
         [DV]
-        internal NDouble _majorTick = NDouble.NullValue;
+        public NDouble _majorTick = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets the interval of the secondary tick.
@@ -152,7 +152,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _minorTick.Value = value; }
         }
         [DV]
-        internal NDouble _minorTick = NDouble.NullValue;
+        public NDouble _minorTick = NDouble.NullValue;
 
         /// <summary>
         /// Gets or sets the type of the primary tick mark.
@@ -163,7 +163,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _majorTickMark.Value = (int)value; }
         }
         [DV(Type = typeof(TickMarkType))]
-        internal NEnum _majorTickMark = NEnum.NullValue(typeof(TickMarkType));
+        public NEnum _majorTickMark = NEnum.NullValue(typeof(TickMarkType));
 
         /// <summary>
         /// Gets or sets the type of the secondary tick mark.
@@ -174,7 +174,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _minorTickMark.Value = (int)value; }
         }
         [DV(Type = typeof(TickMarkType))]
-        internal NEnum _minorTickMark = NEnum.NullValue(typeof(TickMarkType));
+        public NEnum _minorTickMark = NEnum.NullValue(typeof(TickMarkType));
 
         /// <summary>
         /// Gets the label of the primary tick.
@@ -189,7 +189,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal TickLabels _tickLabels;
+        public TickLabels _tickLabels;
 
         /// <summary>
         /// Gets the format of the axis line.
@@ -204,7 +204,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the primary gridline object.
@@ -219,7 +219,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Gridlines _majorGridlines;
+        public Gridlines _majorGridlines;
 
         /// <summary>
         /// Gets the secondary gridline object.
@@ -234,7 +234,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Gridlines _minorGridlines;
+        public Gridlines _minorGridlines;
 
         /// <summary>
         /// Gets or sets, whether the axis has a primary gridline object.
@@ -245,7 +245,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _hasMajorGridlines.Value = value; }
         }
         [DV]
-        internal NBool _hasMajorGridlines = NBool.NullValue;
+        public NBool _hasMajorGridlines = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets, whether the axis has a secondary gridline object.
@@ -256,13 +256,13 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _hasMinorGridlines.Value = value; }
         }
         [DV]
-        internal NBool _hasMinorGridlines = NBool.NullValue;
+        public NBool _hasMinorGridlines = NBool.NullValue;
         #endregion
 
         /// <summary>
         /// Determines whether the specified gridlines object is a MajorGridlines or an MinorGridlines.
         /// </summary>
-        internal string CheckGridlines(Gridlines gridlines)
+        public string CheckGridlines(Gridlines gridlines)
         {
             if ((_majorGridlines != null) && (gridlines == _majorGridlines))
                 return "MajorGridlines";
@@ -272,11 +272,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             return "";
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Axis into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             Chart chartObject = _parent as Chart;
 
@@ -321,7 +321,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Axis))); }
         }

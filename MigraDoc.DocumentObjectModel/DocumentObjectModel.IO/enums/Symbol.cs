@@ -35,7 +35,7 @@ namespace MigraDoc.DocumentObjectModel.IO
     /// <summary>
     /// The symbols used by DdlScanner/DdlParser.
     /// </summary>
-    enum Symbol
+    public enum Symbol
     {
         // TokenType.None
         None,

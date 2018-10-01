@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Fields
 {
@@ -42,7 +42,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the PageRefField class.
         /// </summary>    
-        internal PageRefField()
+        public PageRefField()
         { }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the PageRefField class with the specified parent.
         /// </summary>
-        internal PageRefField(DocumentObject parent) : base(parent) { }
+        public PageRefField(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -79,14 +79,14 @@ namespace MigraDoc.DocumentObjectModel.Fields
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts PageRefField into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             string str = "\\field(PageRef)";
             str += "[Name = \"" + Name + "\"";
@@ -101,7 +101,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(PageRefField))); }
         }

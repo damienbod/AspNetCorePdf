@@ -33,7 +33,7 @@
 namespace MigraDoc.DocumentObjectModel
 {
     /// <summary>
-    /// Internal color names.
+    /// public color names.
     /// </summary>
     enum ColorName : uint
     {

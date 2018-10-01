@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -49,13 +49,13 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the ChartObject class with the specified parent.
         /// </summary>
-        internal ChartObject(DocumentObject parent) : base(parent) { }
+        public ChartObject(DocumentObject parent) : base(parent) { }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts ChartObject into DDL.
         /// </summary>
-        internal override void Serialize(Serializer _serializer)
+        public override void Serialize(Serializer _serializer)
         {
             // Nothing to do
         }
@@ -63,7 +63,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(ChartObject))); }
         }

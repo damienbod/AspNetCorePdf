@@ -32,7 +32,7 @@
 
 namespace MigraDoc.DocumentObjectModel.Visitors
 {
-    internal interface IVisitable
+    public interface IVisitable
     {
         /// <summary>
         /// Allows the visitor object to visit the document object and its child objects.

@@ -33,7 +33,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 #pragma warning disable 1591
 
@@ -53,7 +53,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Borders class with the specified parent.
         /// </summary>
-        internal Borders(DocumentObject parent) : base(parent) { }
+        public Borders(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Determines whether a particular border exists.
@@ -66,7 +66,7 @@ namespace MigraDoc.DocumentObjectModel
             return GetBorderReadOnly(type) != null;
         }
 
-        internal Border GetBorderReadOnly(BorderType type)
+        public Border GetBorderReadOnly(BorderType type)
         {
             switch (type)
             {
@@ -179,7 +179,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _top;
+        public Border _top;
 
         /// <summary>
         /// Gets or sets the left border.
@@ -194,7 +194,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _left;
+        public Border _left;
 
         /// <summary>
         /// Gets or sets the bottom border.
@@ -209,7 +209,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _bottom;
+        public Border _bottom;
 
         /// <summary>
         /// Gets or sets the right border.
@@ -224,7 +224,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _right;
+        public Border _right;
 
         /// <summary>
         /// Gets or sets the diagonalup border.
@@ -239,7 +239,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _diagonalUp;
+        public Border _diagonalUp;
 
         /// <summary>
         /// Gets or sets the diagonaldown border.
@@ -254,7 +254,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal Border _diagonalDown;
+        public Border _diagonalDown;
 
         /// <summary>
         /// Gets or sets a value indicating whether the borders are visible.
@@ -265,7 +265,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _visible.Value = value; }
         }
         [DV]
-        internal NBool _visible = NBool.NullValue;
+        public NBool _visible = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the line style of the borders.
@@ -276,7 +276,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _style.Value = (int)value; }
         }
         [DV(Type = typeof(BorderStyle))]
-        internal NEnum _style = NEnum.NullValue(typeof(BorderStyle));
+        public NEnum _style = NEnum.NullValue(typeof(BorderStyle));
 
         /// <summary>
         /// Gets or sets the standard width of the borders.
@@ -287,7 +287,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the color of the borders.
@@ -298,7 +298,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets or sets the distance between text and the top border.
@@ -309,7 +309,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _distanceFromTop = value; }
         }
         [DV]
-        internal Unit _distanceFromTop = Unit.NullValue;
+        public Unit _distanceFromTop = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the distance between text and the bottom border.
@@ -320,7 +320,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _distanceFromBottom = value; }
         }
         [DV]
-        internal Unit _distanceFromBottom = Unit.NullValue;
+        public Unit _distanceFromBottom = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the distance between text and the left border.
@@ -331,7 +331,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _distanceFromLeft = value; }
         }
         [DV]
-        internal Unit _distanceFromLeft = Unit.NullValue;
+        public Unit _distanceFromLeft = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the distance between text and the right border.
@@ -342,7 +342,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _distanceFromRight = value; }
         }
         [DV]
-        internal Unit _distanceFromRight = Unit.NullValue;
+        public Unit _distanceFromRight = Unit.NullValue;
 
         /// <summary>
         /// Sets the distance to all four borders to the specified value.
@@ -370,11 +370,11 @@ namespace MigraDoc.DocumentObjectModel
         protected bool _clearAll;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Borders into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             Serialize(serializer, null);
         }
@@ -382,7 +382,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts Borders into DDL.
         /// </summary>
-        internal void Serialize(Serializer serializer, Borders refBorders)
+        public void Serialize(Serializer serializer, Borders refBorders)
         {
             if (_clearAll)
                 serializer.WriteLine("Borders = null");
@@ -437,7 +437,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Gets a name of a border.
         /// </summary>
-        internal string GetMyName(Border border)
+        public string GetMyName(Border border)
         {
             if (border == _top)
                 return "Top";
@@ -515,7 +515,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Borders))); }
         }

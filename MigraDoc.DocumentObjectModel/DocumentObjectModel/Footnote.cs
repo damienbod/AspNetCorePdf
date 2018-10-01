@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes;
@@ -53,12 +53,12 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Footnote class with the specified parent.
         /// </summary>
-        internal Footnote(DocumentObject parent) : base(parent) { }
+        public Footnote(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Footnote class with a text the Footnote shall content.
         /// </summary>
-        internal Footnote(string content)
+        public Footnote(string content)
             : this()
         {
             Elements.AddParagraph(content);
@@ -163,7 +163,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal DocumentElements _elements;
+        public DocumentElements _elements;
 
         /// <summary>
         /// Gets or sets the character to be used to mark the footnote.
@@ -174,7 +174,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _reference.Value = value; }
         }
         [DV]
-        internal NString _reference = NString.NullValue;
+        public NString _reference = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the style name of the footnote.
@@ -185,7 +185,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets the format of the footnote.
@@ -200,14 +200,14 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Footnote into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\footnote");
 
@@ -242,7 +242,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Footnote))); }
         }

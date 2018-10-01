@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
@@ -53,7 +53,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the HeaderFooter class with the specified parent.
         /// </summary>
-        internal HeaderFooter(DocumentObject parent) : base(parent) { }
+        public HeaderFooter(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -238,7 +238,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the paragraph format.
@@ -253,7 +253,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets the collection of document objects that defines the header or footer.
@@ -268,7 +268,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV(ItemType = typeof(DocumentObject))]
-        internal DocumentElements _elements;
+        public DocumentElements _elements;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -279,14 +279,14 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts HeaderFooter into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             HeadersFooters headersfooters = (HeadersFooters)_parent;
             if (headersfooters.Primary == this)
@@ -300,7 +300,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts HeaderFooter into DDL.
         /// </summary>
-        internal void Serialize(Serializer serializer, string prefix)
+        public void Serialize(Serializer serializer, string prefix)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\" + prefix + (IsHeader ? "header" : "footer"));
@@ -338,7 +338,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(HeaderFooter))); }
         }

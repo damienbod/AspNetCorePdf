@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -49,7 +49,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Font class with the specified parent.
         /// </summary>
-        internal Font(DocumentObject parent) : base(parent) { }
+        public Font(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Font class with the specified name and size.
@@ -80,7 +80,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Applies all non-null properties of a font to this font if the given font's property is different from the given refFont's property.
         /// </summary>
-        internal void ApplyFont(Font font, Font refFont)
+        public void ApplyFont(Font font, Font refFont)
         {
             if (font == null)
                 throw new ArgumentNullException("font");
@@ -152,7 +152,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _name.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the size of the font.
@@ -163,7 +163,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _size = value; }
         }
         [DV]
-        internal Unit _size = Unit.NullValue;
+        public Unit _size = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the bold property.
@@ -174,7 +174,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _bold.Value = value; }
         }
         [DV]
-        internal NBool _bold = NBool.NullValue;
+        public NBool _bold = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the italic property.
@@ -185,7 +185,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _italic.Value = value; }
         }
         [DV]
-        internal NBool _italic = NBool.NullValue;
+        public NBool _italic = NBool.NullValue;
 
         // THHO4STLA Implementation for Strikethrough in the forum: http://forum.pdfsharp.net/viewtopic.php?p=4636#p4636
         /// <summary>
@@ -197,7 +197,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _underline.Value = (int)value; }
         }
         [DV(Type = typeof(Underline))]
-        internal NEnum _underline = NEnum.NullValue(typeof(Underline));
+        public NEnum _underline = NEnum.NullValue(typeof(Underline));
 
         /// <summary>
         /// Gets or sets the color property.
@@ -208,7 +208,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets or sets the superscript property.
@@ -223,7 +223,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal NBool _superscript = NBool.NullValue;
+        public NBool _superscript = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the subscript property.
@@ -238,7 +238,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal NBool _subscript = NBool.NullValue;
+        public NBool _subscript = NBool.NullValue;
 
         //  + .Name = "Arial"
         //  + .Size = 8
@@ -280,7 +280,7 @@ namespace MigraDoc.DocumentObjectModel
             return false;
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Get a bitmask of all non-null properties.
         /// </summary>
@@ -309,7 +309,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts Font into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             Serialize(serializer, null);
         }
@@ -318,7 +318,7 @@ namespace MigraDoc.DocumentObjectModel
         /// Converts Font into DDL. Properties with the same value as in an optionally given
         /// font are not serialized.
         /// </summary>
-        internal void Serialize(Serializer serializer, Font font)
+        public void Serialize(Serializer serializer, Font font)
         {
             if (Parent is FormattedText)
             {
@@ -454,7 +454,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Font))); }
         }

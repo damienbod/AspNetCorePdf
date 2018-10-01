@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel.Tables
@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Initializes a new instance of the Rows class with the specified parent.
         /// </summary>
-        internal Rows(DocumentObject parent) : base(parent) { }
+        public Rows(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -101,7 +101,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _alignment.Value = (int)value; }
         }
         [DV(Type = typeof(RowAlignment))]
-        internal NEnum _alignment = NEnum.NullValue(typeof(RowAlignment));
+        public NEnum _alignment = NEnum.NullValue(typeof(RowAlignment));
 
         /// <summary>
         /// Gets or sets the left indent of the table. If row alignment is not Left, 
@@ -113,7 +113,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _leftIndent = value; }
         }
         [DV]
-        internal Unit _leftIndent = Unit.NullValue;
+        public Unit _leftIndent = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the default vertical alignment for all rows.
@@ -124,7 +124,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _verticalAlignment.Value = (int)value; }
         }
         [DV(Type = typeof(VerticalAlignment))]
-        internal NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
+        public NEnum _verticalAlignment = NEnum.NullValue(typeof(VerticalAlignment));
 
         /// <summary>
         /// Gets or sets the height of the rows.
@@ -135,7 +135,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _height = value; }
         }
         [DV]
-        internal Unit _height = Unit.NullValue;
+        public Unit _height = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the rule which is used to determine the height of the rows.
@@ -146,7 +146,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _heightRule.Value = (int)value; }
         }
         [DV(Type = typeof(RowHeightRule))]
-        internal NEnum _heightRule = NEnum.NullValue(typeof(RowHeightRule));
+        public NEnum _heightRule = NEnum.NullValue(typeof(RowHeightRule));
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -157,14 +157,14 @@ namespace MigraDoc.DocumentObjectModel.Tables
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Rows into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteComment(_comment.Value);
             serializer.WriteLine("\\rows");
@@ -214,7 +214,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Rows))); }
         }

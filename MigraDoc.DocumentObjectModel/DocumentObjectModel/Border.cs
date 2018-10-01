@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -50,7 +50,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Border class with the specified parent.
         /// </summary>
-        internal Border(DocumentObject parent) : base(parent) { }
+        public Border(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -81,7 +81,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _visible.Value = value; }
         }
         [DV]
-        internal NBool _visible = NBool.NullValue;
+        public NBool _visible = NBool.NullValue;
 
         /// <summary>
         /// Gets or sets the line style of the border.
@@ -92,7 +92,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _style.Value = (int)value; }
         }
         [DV(Type = typeof(BorderStyle))]
-        internal NEnum _style = NEnum.NullValue(typeof(BorderStyle));
+        public NEnum _style = NEnum.NullValue(typeof(BorderStyle));
 
         /// <summary>
         /// Gets or sets the line width of the border.
@@ -103,7 +103,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _width = value; }
         }
         [DV]
-        internal Unit _width = Unit.NullValue;
+        public Unit _width = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the color of the border.
@@ -114,7 +114,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets the name of this border ("top", "bottom"....).
@@ -132,14 +132,14 @@ namespace MigraDoc.DocumentObjectModel
         {
             get { return _fClear.Value; }
         }
-        internal NBool _fClear = new NBool(false);
+        public NBool _fClear = new NBool(false);
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Border into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             throw new Exception("A Border cannot be serialized alone.");
         }
@@ -147,7 +147,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts Border into DDL.
         /// </summary>
-        internal void Serialize(Serializer serializer, string name, Border refBorder)
+        public void Serialize(Serializer serializer, string name, Border refBorder)
         {
             if (_fClear.Value)
                 serializer.WriteLine(name + " = null");
@@ -172,7 +172,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the _meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Border))); }
         }

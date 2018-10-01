@@ -30,12 +30,12 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Interface for simple nullable values like NInt, NString etc.
     /// </summary>
-    internal interface INullableValue
+    public interface INullableValue
     {
         object GetValue();
         void SetValue(object value);

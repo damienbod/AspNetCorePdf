@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the TextFrame class with the specified parent.
         /// </summary>
-        internal TextFrame(DocumentObject parent) : base(parent) { }
+        public TextFrame(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -167,7 +167,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _marginLeft = value; }
         }
         [DV]
-        internal Unit _marginLeft = Unit.NullValue;
+        public Unit _marginLeft = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the Margin between the textframes content and its right edge.
@@ -178,7 +178,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _marginRight = value; }
         }
         [DV]
-        internal Unit _marginRight = Unit.NullValue;
+        public Unit _marginRight = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the Margin between the textframes content and its top edge.
@@ -189,7 +189,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _marginTop = value; }
         }
         [DV]
-        internal Unit _marginTop = Unit.NullValue;
+        public Unit _marginTop = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets the Margin between the textframes content and its bottom edge.
@@ -200,7 +200,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _marginBottom = value; }
         }
         [DV]
-        internal Unit _marginBottom = Unit.NullValue;
+        public Unit _marginBottom = Unit.NullValue;
 
         /// <summary>
         /// Sets all margins in one step with the same value.
@@ -225,7 +225,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _orientation.Value = (int)value; }
         }
         [DV(Type = typeof(TextOrientation))]
-        internal NEnum _orientation = NEnum.NullValue(typeof(TextOrientation));
+        public NEnum _orientation = NEnum.NullValue(typeof(TextOrientation));
 
         /// <summary>
         /// The document elements that build the textframe's content.
@@ -254,11 +254,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes
                 ((IVisitable)_elements).AcceptVisitor(visitor, true);
         }
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TextFrame into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\textframe");
             int pos = serializer.BeginAttributes();
@@ -284,7 +284,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(TextFrame))); }
         }

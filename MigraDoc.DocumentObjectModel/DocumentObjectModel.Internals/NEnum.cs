@@ -32,12 +32,12 @@
 
 using System;
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Represents a nullable Enum value.
     /// </summary>
-    internal struct NEnum : INullableValue
+    public struct NEnum : INullableValue
     {
         public NEnum(int val, Type type)
         {
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
             _value = value;
         }
 
-        internal Type Type
+        public Type Type
         {
             get { return _type; }
             set { _type = value; }

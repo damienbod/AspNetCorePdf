@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Fields
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the SectionPagesField class with the specified parent.
         /// </summary>
-        internal SectionPagesField(DocumentObject parent) : base(parent) { }
+        public SectionPagesField(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -60,11 +60,11 @@ namespace MigraDoc.DocumentObjectModel.Fields
         }
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts SectionPagesField into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             string str = "\\field(SectionPages)";
 
@@ -79,7 +79,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(SectionPagesField))); }
         }

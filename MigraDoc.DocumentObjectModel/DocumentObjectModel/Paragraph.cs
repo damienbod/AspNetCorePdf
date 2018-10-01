@@ -32,7 +32,7 @@
 
 using System;
 using System.Collections.Generic;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Shapes;
@@ -53,7 +53,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Paragraph class with the specified parent.
         /// </summary>
-        internal Paragraph(DocumentObject parent) : base(parent) { }
+        public Paragraph(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -455,7 +455,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the ParagraphFormat object of the paragraph.
@@ -470,7 +470,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ParagraphFormat _format;
+        public ParagraphFormat _format;
 
         /// <summary>
         /// Gets the collection of document objects that defines the paragraph.
@@ -485,7 +485,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ParagraphElements _elements;
+        public ParagraphElements _elements;
 
         /// <summary>
         /// Gets or sets a comment associated with this object.
@@ -496,10 +496,10 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Allows the visitor object to visit the document object and its child objects.
         /// </summary>
@@ -512,9 +512,9 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
-        /// For internal use only.
+        /// For public use only.
         /// </summary>
-        internal bool SerializeContentOnly
+        public bool SerializeContentOnly
         {
             get { return _serializeContentOnly; }
             set { _serializeContentOnly = value; }
@@ -524,7 +524,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts Paragraph into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (!_serializeContentOnly)
             {
@@ -557,7 +557,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Paragraph))); }
         }
@@ -565,7 +565,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns an array of Paragraphs that are separated by parabreaks. Null if no parabreak is found.
         /// </summary>
-        internal Paragraph[] SplitOnParaBreak()
+        public Paragraph[] SplitOnParaBreak()
         {
             if (_elements == null)
                 return null;

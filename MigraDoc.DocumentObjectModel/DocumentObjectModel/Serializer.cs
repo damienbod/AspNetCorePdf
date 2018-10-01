@@ -35,7 +35,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -43,7 +43,7 @@ namespace MigraDoc.DocumentObjectModel
     /// Object to be passed to the Serialize function of a DocumentObject to convert
     /// it into DDL.
     /// </summary>
-    internal sealed class Serializer
+    public sealed class Serializer
     {
         /// <summary>
         /// A Serializer object for converting MDDOM into DDL.
@@ -51,7 +51,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <param name="textWriter">A TextWriter to write DDL in.</param>
         /// <param name="indent">Indent of a new block. Default is 2.</param>
         /// <param name="initialIndent">Initial indent to start with.</param>
-        internal Serializer(TextWriter textWriter, int indent, int initialIndent)
+        public Serializer(TextWriter textWriter, int indent, int initialIndent)
         {
             if (textWriter == null)
                 throw new ArgumentNullException("textWriter");
@@ -66,19 +66,19 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Serializer class with the specified TextWriter.
         /// </summary>
-        internal Serializer(TextWriter textWriter) : this(textWriter, 2, 0) { }
+        public Serializer(TextWriter textWriter) : this(textWriter, 2, 0) { }
 
         /// <summary>
         /// Initializes a new instance of the Serializer class with the specified TextWriter and indentation.
         /// </summary>
-        internal Serializer(TextWriter textWriter, int indent) : this(textWriter, indent, 0) { }
+        public Serializer(TextWriter textWriter, int indent) : this(textWriter, indent, 0) { }
 
         readonly TextWriter _textWriter;
 
         /// <summary>
         /// Gets or sets the indentation for a new indentation level.
         /// </summary>
-        internal int Indent
+        public int Indent
         {
             get { return _indent; }
             set { _indent = value; }
@@ -88,7 +88,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Gets or sets the initial indentation which precede every line.
         /// </summary>
-        internal int InitialIndent
+        public int InitialIndent
         {
             get { return _writeIndent; }
             set { _writeIndent = value; }
@@ -114,7 +114,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Writes the header for a DDL file containing copyright and creation time information.
         /// </summary>
-        internal void WriteStamp()
+        public void WriteStamp()
         {
             if (_fWriteStamp)
             {
@@ -126,7 +126,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Appends a string indented without line feed.
         /// </summary>
-        internal void Write(string str)
+        public void Write(string str)
         {
             string wrappedStr = DoWordWrap(str);
             if (wrappedStr.Length < str.Length && wrappedStr != "")
@@ -142,7 +142,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Writes a string indented with line feed.
         /// </summary>
-        internal void WriteLine(string str)
+        public void WriteLine(string str)
         {
             string wrappedStr = DoWordWrap(str);
             if (wrappedStr.Length < str.Length)
@@ -181,7 +181,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Writes an empty line.
         /// </summary>
-        internal void WriteLine()
+        public void WriteLine()
         {
             WriteLine(String.Empty);
         }
@@ -189,7 +189,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Write a line without committing (without marking the text as serialized).
         /// </summary>
-        internal void WriteLineNoCommit(string str)
+        public void WriteLineNoCommit(string str)
         {
             WriteLineToStream(str);
         }
@@ -197,7 +197,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Write a line without committing (without marking the text as serialized).
         /// </summary>
-        internal void WriteLineNoCommit()
+        public void WriteLineNoCommit()
         {
             WriteLineNoCommit(String.Empty);
         }
@@ -205,7 +205,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Writes a text as comment and automatically word-wraps it.
         /// </summary>
-        internal void WriteComment(string comment)
+        public void WriteComment(string comment)
         {
             if (String.IsNullOrEmpty(comment))
                 return;
@@ -253,7 +253,7 @@ namespace MigraDoc.DocumentObjectModel
         /// Writes a line break if the current position is not at the beginning
         /// of a new line.
         /// </summary>
-        internal void CloseUpLine()
+        public void CloseUpLine()
         {
             if (_linePos > 0)
                 WriteLine();
@@ -350,7 +350,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Start attribute part.
         /// </summary>
-        internal int BeginAttributes()
+        public int BeginAttributes()
         {
             int pos = Position;
             WriteLineNoCommit("[");
@@ -362,7 +362,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Start attribute part.
         /// </summary>
-        internal int BeginAttributes(string str)
+        public int BeginAttributes(string str)
         {
             int pos = Position;
             WriteLineNoCommit(str);
@@ -375,7 +375,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// End attribute part.
         /// </summary>
-        internal bool EndAttributes()
+        public bool EndAttributes()
         {
             DecreaseIndent();
             WriteLineNoCommit("]");
@@ -385,7 +385,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// End attribute part.
         /// </summary>
-        internal bool EndAttributes(int pos)
+        public bool EndAttributes(int pos)
         {
             bool commit = EndAttributes();
             if (!commit)
@@ -396,7 +396,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Write attribute of type Unit, Color, int, float, double, bool, string or enum.
         /// </summary>
-        internal void WriteSimpleAttribute(string valueName, object value)
+        public void WriteSimpleAttribute(string valueName, object value)
         {
             INullableValue ival = value as INullableValue;
             if (ival != null)
@@ -449,7 +449,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Start content part.
         /// </summary>
-        internal int BeginContent()
+        public int BeginContent()
         {
             int pos = Position;
             WriteLineNoCommit("{");
@@ -461,7 +461,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Start content part.
         /// </summary>
-        internal int BeginContent(string str)
+        public int BeginContent(string str)
         {
             int pos = Position;
             WriteLineNoCommit(str);
@@ -474,7 +474,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// End content part.
         /// </summary>
-        internal bool EndContent()
+        public bool EndContent()
         {
             DecreaseIndent();
             WriteLineNoCommit("}");
@@ -484,7 +484,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// End content part.
         /// </summary>
-        internal bool EndContent(int pos)
+        public bool EndContent(int pos)
         {
             bool commit = EndContent();
             if (!commit)
@@ -495,7 +495,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Starts a new nesting block.
         /// </summary>
-        internal int BeginBlock()
+        public int BeginBlock()
         {
             int pos = Position;
             if (_stackIdx + 1 >= _commitTextStack.Length)
@@ -508,7 +508,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Ends a nesting block.
         /// </summary>
-        internal bool EndBlock()
+        public bool EndBlock()
         {
             if (_stackIdx <= 0)
                 throw new ArgumentException("Block nesting level underflow.");
@@ -521,7 +521,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Ends a nesting block.
         /// </summary>
-        internal bool EndBlock(int pos)
+        public bool EndBlock(int pos)
         {
             bool commit = EndBlock();
             if (!commit)
@@ -565,7 +565,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Flushes the buffers of the underlying text writer.
         /// </summary>
-        internal void Flush()
+        public void Flush()
         {
             _textWriter.Flush();
         }

@@ -34,7 +34,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// A collection that manages ValueDescriptors.
@@ -59,7 +59,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
         }
 
         /// <summary>
-        /// Gets the <see cref="MigraDoc.DocumentObjectModel.Internals.ValueDescriptor"/> at the specified index.
+        /// Gets the <see cref="MigraDoc.DocumentObjectModel.publics.ValueDescriptor"/> at the specified index.
         /// </summary>
         public ValueDescriptor this[int index]
         {
@@ -67,7 +67,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
         }
 
         /// <summary>
-        /// Gets the <see cref="MigraDoc.DocumentObjectModel.Internals.ValueDescriptor"/> with the specified name.
+        /// Gets the <see cref="MigraDoc.DocumentObjectModel.publics.ValueDescriptor"/> with the specified name.
         /// </summary>
         public ValueDescriptor this[string name]
         {

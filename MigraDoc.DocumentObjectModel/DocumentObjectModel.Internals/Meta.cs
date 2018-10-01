@@ -33,7 +33,7 @@
 using System;
 using System.Reflection;
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Meta class for document objects.

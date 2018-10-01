@@ -36,14 +36,14 @@ using System.Reflection;
 
 #pragma warning disable 1591
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Base class of all value descriptor classes.
     /// </summary>
     public abstract class ValueDescriptor
     {
-        internal ValueDescriptor(string valueName, Type valueType, Type memberType, MemberInfo memberInfo, VDFlags flags)
+        public ValueDescriptor(string valueName, Type valueType, Type memberType, MemberInfo memberInfo, VDFlags flags)
         {
             // Take new naming convention into account.
             if (valueName.StartsWith("_"))
@@ -78,7 +78,7 @@ namespace MigraDoc.DocumentObjectModel.Internals
         public abstract void SetNull(DocumentObject dom);
         public abstract bool IsNull(DocumentObject dom);
 
-        internal static ValueDescriptor CreateValueDescriptor(MemberInfo memberInfo, DVAttribute attr)
+        public static ValueDescriptor CreateValueDescriptor(MemberInfo memberInfo, DVAttribute attr)
         {
             VDFlags flags = VDFlags.None;
             if (attr.RefOnly)
@@ -184,9 +184,9 @@ namespace MigraDoc.DocumentObjectModel.Internals
     /// <summary>
     /// Value descriptor of all nullable types.
     /// </summary>
-    internal class NullableDescriptor : ValueDescriptor
+    public class NullableDescriptor : ValueDescriptor
     {
-        internal NullableDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
+        public NullableDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
             : base(valueName, valueType, fieldType, memberInfo, flags)
         { }
 
@@ -279,9 +279,9 @@ namespace MigraDoc.DocumentObjectModel.Internals
     /// <summary>
     /// Value descriptor of value types.
     /// </summary>
-    internal class ValueTypeDescriptor : ValueDescriptor
+    public class ValueTypeDescriptor : ValueDescriptor
     {
-        internal ValueTypeDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
+        public ValueTypeDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
             : base(valueName, valueType, fieldType, memberInfo, flags)
         { }
 
@@ -361,9 +361,9 @@ namespace MigraDoc.DocumentObjectModel.Internals
     /// <summary>
     /// Value descriptor of DocumentObject.
     /// </summary>
-    internal class DocumentObjectDescriptor : ValueDescriptor
+    public class DocumentObjectDescriptor : ValueDescriptor
     {
-        internal DocumentObjectDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
+        public DocumentObjectDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
             : base(valueName, valueType, fieldType, memberInfo, flags)
         { }
 
@@ -470,9 +470,9 @@ namespace MigraDoc.DocumentObjectModel.Internals
     /// <summary>
     /// Value descriptor of DocumentObjectCollection.
     /// </summary>
-    internal class DocumentObjectCollectionDescriptor : ValueDescriptor
+    public class DocumentObjectCollectionDescriptor : ValueDescriptor
     {
-        internal DocumentObjectCollectionDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
+        public DocumentObjectCollectionDescriptor(string valueName, Type valueType, Type fieldType, MemberInfo memberInfo, VDFlags flags)
             : base(valueName, valueType, fieldType, memberInfo, flags)
         { }
 

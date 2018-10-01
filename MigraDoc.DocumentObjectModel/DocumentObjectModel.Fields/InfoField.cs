@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Fields
 {
@@ -43,13 +43,13 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Initializes a new instance of the InfoField class.
         /// </summary>
-        internal InfoField()
+        public InfoField()
         { }
 
         /// <summary>
         /// Initializes a new instance of the InfoField class with the specified parent.
         /// </summary>
-        internal InfoField(DocumentObject parent) : base(parent) { }
+        public InfoField(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -77,7 +77,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
             }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
         #endregion
 
         /// <summary>
@@ -118,11 +118,11 @@ namespace MigraDoc.DocumentObjectModel.Fields
         {
             return false;
         }
-        #region Internal
+        #region public
         /// <summary>
         /// Converts InfoField into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             string str = "\\field(Info)";
             if (Name == "")
@@ -135,7 +135,7 @@ namespace MigraDoc.DocumentObjectModel.Fields
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(InfoField))); }
         }

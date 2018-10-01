@@ -32,12 +32,12 @@
 
 using System;
 
-namespace MigraDoc.DocumentObjectModel.Internals
+namespace MigraDoc.DocumentObjectModel.publics
 {
     /// <summary>
     /// Represents a nullable string value.
     /// </summary>
-    internal struct NString : INullableValue
+    public struct NString : INullableValue
     {
         /// <summary>
         /// Gets or sets the value of the instance.

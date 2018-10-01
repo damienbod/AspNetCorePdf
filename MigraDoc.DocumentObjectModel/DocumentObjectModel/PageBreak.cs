@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the PageBreak class with the specified parent.
         /// </summary>
-        internal PageBreak(DocumentObject parent) : base(parent) { }
+        public PageBreak(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Creates a deep copy of this object.
@@ -61,7 +61,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Converts PageBreak into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.WriteLine("\\pagebreak");
         }
@@ -69,7 +69,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(PageBreak))); }
         }

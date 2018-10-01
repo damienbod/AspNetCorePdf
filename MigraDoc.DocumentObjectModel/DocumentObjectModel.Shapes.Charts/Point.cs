@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -42,7 +42,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the Point class.
         /// </summary>
-        internal Point()
+        public Point()
         { }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal LineFormat _lineFormat;
+        public LineFormat _lineFormat;
 
         /// <summary>
         /// Gets the filling format of the data point.
@@ -112,7 +112,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal FillFormat _fillFormat;
+        public FillFormat _fillFormat;
 
         /// <summary>
         /// The actual value of the data point.
@@ -123,14 +123,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _value.Value = value; }
         }
         [DV]
-        internal NDouble _value = NDouble.NullValue;
+        public NDouble _value = NDouble.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Point into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (!IsNull("LineFormat") || !IsNull("FillFormat"))
             {
@@ -157,7 +157,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Point))); }
         }

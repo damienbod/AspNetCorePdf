@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the WrapFormat class with the specified parent.
         /// </summary>
-        internal WrapFormat(DocumentObject parent) : base(parent) { }
+        public WrapFormat(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -70,7 +70,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _style.Value = (int)value; }
         }
         [DV(Type = typeof(WrapStyle))]
-        internal NEnum _style = NEnum.NullValue(typeof(WrapStyle));
+        public NEnum _style = NEnum.NullValue(typeof(WrapStyle));
 
         /// <summary>
         /// Gets or sets the distance between the top side of the shape with the adjacent text.
@@ -117,11 +117,11 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         Unit _distanceRight = Unit.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts WrapFormat into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int pos = serializer.BeginContent("WrapFormat");
             if (!_style.IsNull)
@@ -140,7 +140,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(WrapFormat))); }
         }

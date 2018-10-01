@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Initializes a new instance of the FillFormat class with the specified parent.
         /// </summary>
-        internal FillFormat(DocumentObject parent) : base(parent) { }
+        public FillFormat(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -70,7 +70,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _color = value; }
         }
         [DV]
-        internal Color _color = Color.Empty;
+        public Color _color = Color.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether the background color should be visible.
@@ -81,14 +81,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
             set { _visible.Value = value; }
         }
         [DV]
-        internal NBool _visible = NBool.NullValue;
+        public NBool _visible = NBool.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts FillFormat into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             serializer.BeginContent("FillFormat");
             if (!_visible.IsNull)
@@ -101,7 +101,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(FillFormat))); }
         }

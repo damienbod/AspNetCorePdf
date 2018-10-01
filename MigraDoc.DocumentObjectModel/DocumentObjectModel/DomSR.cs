@@ -77,7 +77,7 @@ namespace MigraDoc.DocumentObjectModel
             }
             catch (Exception ex)
             {
-                message = "INTERNAL ERROR while formatting error message: " + ex;
+                message = "public ERROR while formatting error message: " + ex;
             }
             return message;
         }

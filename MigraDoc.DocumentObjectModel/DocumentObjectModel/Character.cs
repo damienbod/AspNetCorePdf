@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 #pragma warning disable 1591
 
@@ -77,7 +77,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Character class with the specified parent.
         /// </summary>
-        internal Character(DocumentObject parent) : base(parent) { }
+        public Character(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Character class with the specified SymbolName.
@@ -100,7 +100,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _symbolName.Value = (int)value; }
         }
         [DV(Type = typeof(SymbolName))]
-        internal NEnum _symbolName = NEnum.NullValue(typeof(SymbolName));
+        public NEnum _symbolName = NEnum.NullValue(typeof(SymbolName));
 
         /// <summary>
         /// Gets or sets the SymbolName as character. Returns 0 if the type is defined via an enum.
@@ -125,14 +125,14 @@ namespace MigraDoc.DocumentObjectModel
             set { _count.Value = value; }
         }
         [DV]
-        internal NInt _count = new NInt(1);
+        public NInt _count = new NInt(1);
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Character into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             string text = String.Empty;
             if (_count == 1)
@@ -189,7 +189,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Character))); }
         }

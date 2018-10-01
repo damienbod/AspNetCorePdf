@@ -31,7 +31,7 @@
 #endregion
 
 using System;
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 using MigraDoc.DocumentObjectModel.Visitors;
 
 namespace MigraDoc.DocumentObjectModel
@@ -44,13 +44,13 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the Style class.
         /// </summary>
-        internal Style()
+        public Style()
         { }
 
         /// <summary>
         /// Initializes a new instance of the Style class with the specified parent.
         /// </summary>
-        internal Style(DocumentObject parent) : base(parent) { }
+        public Style(DocumentObject parent) : base(parent) { }
 
         /// <summary>
         /// Initializes a new instance of the Style class with name and base style name.
@@ -109,12 +109,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Indicates whether the style is read-only. 
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return _readOnly; }
-            internal set { _readOnly = value; }
-        }
-        bool _readOnly;
+        public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Gets the font of ParagraphFormat. 
@@ -136,7 +131,7 @@ namespace MigraDoc.DocumentObjectModel
             get { return _name.Value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        public NString _name = NString.NullValue;
 
         /// <summary>
         /// Gets the ParagraphFormat. To prevent read-only styles from being modified, a copy of its ParagraphFormat
@@ -148,7 +143,7 @@ namespace MigraDoc.DocumentObjectModel
             {
                 if (_paragraphFormat == null)
                     _paragraphFormat = new ParagraphFormat(this);
-                if (_readOnly)
+                if (IsReadOnly)
                     return _paragraphFormat.Clone();
                 return _paragraphFormat;
             }
@@ -159,7 +154,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal ParagraphFormat _paragraphFormat;
+        public ParagraphFormat _paragraphFormat;
 
         /// <summary>
         /// Gets or sets the name of the base style.
@@ -214,7 +209,7 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV]
-        internal NString _baseStyle = NString.NullValue;
+        public NString _baseStyle = NString.NullValue;
 
         /// <summary>
         /// Gets the StyleType of the style.
@@ -256,12 +251,12 @@ namespace MigraDoc.DocumentObjectModel
             }
         }
         [DV(Type = typeof(StyleType))]
-        internal NEnum _styleType = NEnum.NullValue(typeof(StyleType));
+        public NEnum _styleType = NEnum.NullValue(typeof(StyleType));
 
         /// <summary>
         /// Determines whether the style is the style Normal or DefaultParagraphFont.
         /// </summary>
-        internal bool IsRootStyle
+        public bool IsRootStyle
         {
             get
             {
@@ -300,7 +295,7 @@ namespace MigraDoc.DocumentObjectModel
             get { return _buildIn.Value; }
         }
         [DV]
-        internal NBool _buildIn = NBool.NullValue;
+        public NBool _buildIn = NBool.NullValue;
         // TODO: rename to builtIn.
 
         /// <summary>
@@ -312,7 +307,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _comment.Value = value; }
         }
         [DV]
-        internal NString _comment = NString.NullValue;
+        public NString _comment = NString.NullValue;
         #endregion
 
         // Names of the root styles. Root styles have no BaseStyle.
@@ -327,11 +322,11 @@ namespace MigraDoc.DocumentObjectModel
         /// </summary>
         public const string DefaultParagraphName = StyleNames.Normal;
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts Style into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
 #if DEBUG_ // Test
       if (Name == StyleNames.Heading1 || Name == StyleNames.Heading2)
@@ -354,7 +349,7 @@ namespace MigraDoc.DocumentObjectModel
                 {
                     // case: style is "Normal"
                     if (String.Compare(_name.Value, DefaultParagraphName, StringComparison.OrdinalIgnoreCase) != 0)
-                        throw new ArgumentException("Internal Error: BaseStyle not set.");
+                        throw new ArgumentException("public Error: BaseStyle not set.");
 
                     refStyle = buildInStyles[buildInStyles.GetIndex(Name)];
                     refFormat = refStyle.ParagraphFormat;
@@ -447,7 +442,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(Style))); }
         }

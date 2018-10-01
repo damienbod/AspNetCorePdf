@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Initializes a new instance of the ListInfo class with the specified parent.
         /// </summary>
-        internal ListInfo(DocumentObject parent) : base(parent) { }
+        public ListInfo(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -70,7 +70,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _listType.Value = (int)value; }
         }
         [DV(Type = typeof(ListType))]
-        internal NEnum _listType = NEnum.NullValue(typeof(ListType));
+        public NEnum _listType = NEnum.NullValue(typeof(ListType));
 
         /// <summary>
         /// Gets or sets the left indent of the list symbol.
@@ -81,7 +81,7 @@ namespace MigraDoc.DocumentObjectModel
             set { _numberPosition = value; }
         }
         [DV]
-        internal Unit _numberPosition = Unit.NullValue;
+        public Unit _numberPosition = Unit.NullValue;
 
         /// <summary>
         /// Gets or sets a value indicating whether
@@ -93,14 +93,14 @@ namespace MigraDoc.DocumentObjectModel
             set { _continuePreviousList.Value = value; }
         }
         [DV]
-        internal NBool _continuePreviousList = NBool.NullValue;
+        public NBool _continuePreviousList = NBool.NullValue;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts ListInfo into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             if (!_listType.IsNull)
                 serializer.WriteSimpleAttribute("ListInfo.ListType", ListType);
@@ -113,7 +113,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(ListInfo))); }
         }

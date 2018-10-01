@@ -30,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using MigraDoc.DocumentObjectModel.Internals;
+using MigraDoc.DocumentObjectModel.publics;
 
 namespace MigraDoc.DocumentObjectModel.Shapes.Charts
 {
@@ -48,7 +48,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Initializes a new instance of the TickLabels class with the specified parent.
         /// </summary>
-        internal TickLabels(DocumentObject parent) : base(parent) { }
+        public TickLabels(DocumentObject parent) : base(parent) { }
 
         #region Methods
         /// <summary>
@@ -84,7 +84,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _style.Value = value; }
         }
         [DV]
-        internal NString _style = NString.NullValue;
+        public NString _style = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the label's number format.
@@ -95,7 +95,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             set { _format.Value = value; }
         }
         [DV]
-        internal NString _format = NString.NullValue;
+        public NString _format = NString.NullValue;
 
         /// <summary>
         /// Gets the font of the label.
@@ -110,14 +110,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
             }
         }
         [DV]
-        internal Font _font;
+        public Font _font;
         #endregion
 
-        #region Internal
+        #region public
         /// <summary>
         /// Converts TickLabels into DDL.
         /// </summary>
-        internal override void Serialize(Serializer serializer)
+        public override void Serialize(Serializer serializer)
         {
             int pos = serializer.BeginContent("TickLabels");
 
@@ -136,7 +136,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         /// <summary>
         /// Returns the meta object of this instance.
         /// </summary>
-        internal override Meta Meta
+        public override Meta Meta
         {
             get { return _meta ?? (_meta = new Meta(typeof(TickLabels))); }
         }

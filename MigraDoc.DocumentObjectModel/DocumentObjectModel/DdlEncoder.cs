@@ -131,7 +131,7 @@ namespace MigraDoc.DocumentObjectModel
         /// Scans the given string for characters which are invalid for identifiers.
         /// Strings are limited to 64 characters.
         /// </summary>
-        internal static bool IsDdeIdentifier(string name)
+        public static bool IsDdeIdentifier(string name)
         {
             if (String.IsNullOrEmpty(name))
                 return false;
@@ -163,7 +163,7 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Quotes the given name, if it contains characters which are invalid for identifiers.
         /// </summary>
-        internal static string QuoteIfNameContainsBlanks(string name)
+        public static string QuoteIfNameContainsBlanks(string name)
         {
             if (IsDdeIdentifier(name))
                 return name;

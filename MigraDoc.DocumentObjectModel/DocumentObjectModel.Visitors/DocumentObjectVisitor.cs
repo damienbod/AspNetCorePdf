@@ -47,45 +47,45 @@ namespace MigraDoc.DocumentObjectModel.Visitors
         public abstract void Visit(DocumentObject documentObject);
 
         // Chart
-        internal virtual void VisitChart(Chart chart) { }
-        internal virtual void VisitTextArea(TextArea textArea) { }
-        internal virtual void VisitLegend(Legend legend) { }
+        public virtual void VisitChart(Chart chart) { }
+        public virtual void VisitTextArea(TextArea textArea) { }
+        public virtual void VisitLegend(Legend legend) { }
 
         // Document
-        internal virtual void VisitDocument(Document document) { }
-        internal virtual void VisitDocumentElements(DocumentElements elements) { }
-        internal virtual void VisitDocumentObjectCollection(DocumentObjectCollection elements) { }
+        public virtual void VisitDocument(Document document) { }
+        public virtual void VisitDocumentElements(DocumentElements elements) { }
+        public virtual void VisitDocumentObjectCollection(DocumentObjectCollection elements) { }
 
         // Fields
 
         // Format
-        internal virtual void VisitFont(Font font) { }
-        internal virtual void VisitParagraphFormat(ParagraphFormat paragraphFormat) { }
-        internal virtual void VisitShading(Shading shading) { }
-        internal virtual void VisitStyle(Style style) { }
-        internal virtual void VisitStyles(Styles styles) { }
+        public virtual void VisitFont(Font font) { }
+        public virtual void VisitParagraphFormat(ParagraphFormat paragraphFormat) { }
+        public virtual void VisitShading(Shading shading) { }
+        public virtual void VisitStyle(Style style) { }
+        public virtual void VisitStyles(Styles styles) { }
 
         // Paragraph
-        internal virtual void VisitFootnote(Footnote footnote) { }
-        internal virtual void VisitHyperlink(Hyperlink hyperlink) { }
-        internal virtual void VisitFormattedText(FormattedText formattedText) { }
-        internal virtual void VisitParagraph(Paragraph paragraph) { }
+        public virtual void VisitFootnote(Footnote footnote) { }
+        public virtual void VisitHyperlink(Hyperlink hyperlink) { }
+        public virtual void VisitFormattedText(FormattedText formattedText) { }
+        public virtual void VisitParagraph(Paragraph paragraph) { }
 
         // Section
-        internal virtual void VisitHeaderFooter(HeaderFooter headerFooter) { }
-        internal virtual void VisitHeadersFooters(HeadersFooters headersFooters) { }
-        internal virtual void VisitSection(Section section) { }
-        internal virtual void VisitSections(Sections sections) { }
+        public virtual void VisitHeaderFooter(HeaderFooter headerFooter) { }
+        public virtual void VisitHeadersFooters(HeadersFooters headersFooters) { }
+        public virtual void VisitSection(Section section) { }
+        public virtual void VisitSections(Sections sections) { }
 
         // Shape
-        internal virtual void VisitImage(Image image) { }
-        internal virtual void VisitTextFrame(TextFrame textFrame) { }
+        public virtual void VisitImage(Image image) { }
+        public virtual void VisitTextFrame(TextFrame textFrame) { }
 
         // Table
-        internal virtual void VisitCell(Cell cell) { }
-        internal virtual void VisitColumns(Columns columns) { }
-        internal virtual void VisitRow(Row row) { }
-        internal virtual void VisitRows(Rows rows) { }
-        internal virtual void VisitTable(Table table) { }
+        public virtual void VisitCell(Cell cell) { }
+        public virtual void VisitColumns(Columns columns) { }
+        public virtual void VisitRow(Row row) { }
+        public virtual void VisitRows(Rows rows) { }
+        public virtual void VisitTable(Table table) { }
     }
 }
