@@ -11,3 +11,5 @@
 /PdfSharp.Charting/bin
 /MigraDoc.Rendering/.vs
 /MigraDoc.Rendering/bin
+/PDFSharpMigraDocAll/bin
+/PDFSharpMigraDocAll/obj

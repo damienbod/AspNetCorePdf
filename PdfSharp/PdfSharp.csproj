@@ -4,8 +4,8 @@
     <Version>3.0.0.0</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DefineConstants>$(DefineConstants);CORE;CORE_WITH_GDI</DefineConstants>
-    <AssemblyName>PdfSharp.netstandard2.0</AssemblyName>
-    <PackageId>PdfSharp.netstandard2.0</PackageId>
+    <AssemblyName>PdfSharp</AssemblyName>
+    <PackageId>PdfSharp</PackageId>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -13,7 +13,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <RootNamespace>YetaWF.Modules.AddThis</RootNamespace>
+    <RootNamespace>PdfSharp</RootNamespace>
   </PropertyGroup>
 
 
