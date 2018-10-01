@@ -6,10 +6,30 @@
 
   <ItemGroup>
     <None Remove="PdfProvider\logo.jpg" />
+    <None Remove="PdfProvider\Resources\Tinos-Bold.ttf" />
+    <None Remove="PdfProvider\Resources\Tinos-BoldItalic.ttf" />
+    <None Remove="PdfProvider\Resources\Tinos-Italic.ttf" />
+    <None Remove="PdfProvider\Resources\Tinos-Licence.txt" />
+    <None Remove="PdfProvider\Resources\Tinos-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="PdfProvider\Images\logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PdfProvider\Resources\Tinos-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PdfProvider\Resources\Tinos-BoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PdfProvider\Resources\Tinos-Italic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PdfProvider\Resources\Tinos-Licence.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PdfProvider\Resources\Tinos-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
