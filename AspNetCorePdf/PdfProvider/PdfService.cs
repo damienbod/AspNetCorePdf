@@ -45,7 +45,7 @@ namespace AspNetCorePdf.PdfProvider
             }
 
             XImage xImage = XImage.FromFile(imagePath);
-            gfx.DrawImage(xImage, xPosition, yPosition, xImage.PixelWidth / 8, xImage.PixelWidth / 8);
+            gfx.DrawImage(xImage, xPosition, yPosition, xImage.PixelWidth / 8, xImage.PixelHeight / 8);
         }
 
         void AddTitleAndFooter(PdfPage page, XGraphics gfx, string title, PdfDocument document, PdfData pdfData)
