@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj" />
     <ProjectReference Include="..\MigraDoc.Rendering\MigraDoc.Rendering.csproj" />
+    <ProjectReference Include="..\MigraDoc.RtfRendering\MigraDoc.RtfRendering.csproj" />
     <ProjectReference Include="..\PdfSharp.Charting\PdfSharp.Charting.csproj" />
     <ProjectReference Include="..\PdfSharp\PdfSharp.csproj" />
   </ItemGroup>
