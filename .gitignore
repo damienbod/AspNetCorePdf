@@ -4,3 +4,8 @@
 /PdfSharp/bin
 /AspNetCorePdf/wwwroot
 /PdfSharp/obj
+/MigraDoc.DocumentObjectModel/bin
+/MigraDoc.DocumentObjectModel/obj
+/MigraDoc.Rendering/obj
+/PdfSharp.Charting/obj
+/PdfSharp.Charting/bin
