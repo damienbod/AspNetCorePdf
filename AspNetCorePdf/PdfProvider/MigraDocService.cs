@@ -10,40 +10,37 @@ namespace AspNetCorePdf.PdfProvider
 {
     public class MigraDocService : IMigraDocService
     {
-        private string _createdDocsPath = ".\\PdfProvider\\Created";
-        private static string _imagesPath = ".\\PdfProvider\\Images";
+        private readonly string _createdDocsPath = ".\\PdfProvider\\Created";
+        private readonly string _imagesPath = ".\\PdfProvider\\Images";
 
-        private static string FillerTextShortText = "fdvsvsvsfv fsfdsfs fdfs fdfdsfsd fdsfsdf fdf";
-        private static string FillerTextMediumText = "fdvsvsvsfv fdsfsdfsf fdsfs fsdf fdsfsdfsd fdsfdsf f dsfdsfs  deded deded dedede dedede deded deded deded defdsfsdf fdfsdfsd  fdfdsfsdf fdfsdfs fdfdsfsd fdsfsdf fdf"; 
-        private static string FillerTextText = "fdvsvsvsfv fdsfsdfsf fdsfs fsdf fdsfsdfsd fdsfdsf f dsfdsfs fdsfsdf fdfsdfsd  fdfdsfsdf fdfsdfs fdfdsfsd fdsfsdf fdf";
+        private readonly string _fillerTextShortText = "fdvsvsvsfv fsfdsfs fdfs fdfdsfsd fdsfsdf fdf";
+        private readonly string _fillerTextMediumText = "fdvsvsvsfv fdsfsdfsf fdsfs fsdf fdsfsdfsd fdsfdsf f dsfdsfs  deded deded dedede dedede deded deded deded defdsfsdf fdfsdfsd  fdfdsfsdf fdfsdfs fdfdsfsd fdsfsdf fdf"; 
+        private readonly string _fillerTextText = "fdvsvsvsfv fdsfsdfsf fdsfs fsdf fdsfsdfsd fdsfdsf f dsfdsfs fdsfsdf fdfsdfsd  fdfdsfsdf fdfsdfs fdfdsfsd fdsfsdf fdf";
 
         public string CreateMigraDocPdf(PdfData pdfData)
         {
             // Create a MigraDoc document
-            Document document = CreateDocument();
+            Document document = CreateDocument(pdfData);
+            string mdddlName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.mdddl";
+            string docName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.pdf";
 
-            //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(document);
-            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
+            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, mdddlName);
 
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
             renderer.Document = document;
-
             renderer.RenderDocument();
-
-            // Save the document...
-            string docName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.pdf";
             renderer.PdfDocument.Save(docName);
 
             return docName;
         }
 
-        public static Document CreateDocument()
+        private Document CreateDocument(PdfData pdfData)
         {
             // Create a new MigraDoc document
             Document document = new Document();
-            document.Info.Title = "Hello, MigraDoc";
-            document.Info.Subject = "Demonstrates an excerpt of the capabilities of MigraDoc.";
-            document.Info.Author = "Stefan Lange";
+            document.Info.Title = pdfData.DocumentTitle;
+            document.Info.Subject = pdfData.Description;
+            document.Info.Author = pdfData.CreatedBy;
 
             DefineStyles(document);
 
@@ -58,11 +55,7 @@ namespace AspNetCorePdf.PdfProvider
 
             return document;
         }
-
-        /// <summary>
-        /// Defines the styles used in the document.
-        /// </summary>
-        static void DefineStyles(Document document)
+        private void DefineStyles(Document document)
         {
             // Get the predefined style Normal.
             Style style = document.Styles["Normal"];
@@ -115,8 +108,7 @@ namespace AspNetCorePdf.PdfProvider
             style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right, TabLeader.Dots);
             style.ParagraphFormat.Font.Color = Colors.Blue;
         }
-
-        static void DefineCover(Document document)
+        private void DefineCover(Document document)
         {
             Section section = document.AddSection();
 
@@ -124,7 +116,7 @@ namespace AspNetCorePdf.PdfProvider
             paragraph.Format.SpaceAfter = "3cm";
 
             Image image = section.AddImage($"{_imagesPath}\\logo.jpg");
-            image.Width = "10cm";
+            image.Width = "4cm";
 
             paragraph = section.AddParagraph("A sample document that demonstrates the\ncapabilities of MigraDoc");
             paragraph.Format.Font.Size = 16;
@@ -135,8 +127,7 @@ namespace AspNetCorePdf.PdfProvider
             paragraph = section.AddParagraph("Rendering date: ");
             paragraph.AddDateField();
         }
-
-        static void DefineTableOfContents(Document document)
+        private void DefineTableOfContents(Document document)
         {
             Section section = document.LastSection;
 
@@ -165,8 +156,7 @@ namespace AspNetCorePdf.PdfProvider
             hyperlink.AddText("Charts\t");
             hyperlink.AddPageRefField("Charts");
         }
-
-        static void DefineContentSection(Document document)
+        private void DefineContentSection(Document document)
         {
             Section section = document.AddSection();
             section.PageSetup.OddAndEvenPagesHeaderFooter = true;
@@ -189,8 +179,7 @@ namespace AspNetCorePdf.PdfProvider
             // not belong to more than one other object. If you forget cloning an exception is thrown.
             section.Footers.EvenPage.Add(paragraph.Clone());
         }
-
-        static void DefineParagraphs(Document document)
+        private void DefineParagraphs(Document document)
         {
             Paragraph paragraph = document.LastSection.AddParagraph("Paragraph Layout Overview", "Heading1");
             paragraph.AddBookmark("Paragraphs");
@@ -200,8 +189,7 @@ namespace AspNetCorePdf.PdfProvider
             DemonstrateFormattedText(document);
             DemonstrateBordersAndShading(document);
         }
-
-        static void DemonstrateAlignment(Document document)
+        private void DemonstrateAlignment(Document document)
         {
             document.LastSection.AddParagraph("Alignment", "Heading2");
 
@@ -209,27 +197,27 @@ namespace AspNetCorePdf.PdfProvider
 
             Paragraph paragraph = document.LastSection.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Left;
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("Right Aligned", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Right;
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("Centered", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("Justified", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Justify;
-            paragraph.AddText(FillerTextMediumText);
+            paragraph.AddText(_fillerTextMediumText);
         }
-        static void DemonstrateIndent(Document document)
+        private void DemonstrateIndent(Document document)
         {
             document.LastSection.AddParagraph("Indent", "Heading2");
 
@@ -237,28 +225,28 @@ namespace AspNetCorePdf.PdfProvider
 
             Paragraph paragraph = document.LastSection.AddParagraph();
             paragraph.Format.LeftIndent = "2cm";
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("Right Indent", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.RightIndent = "1in";
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("First Line Indent", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.FirstLineIndent = "12mm";
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("First Line Negative Indent", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.LeftIndent = "1.5cm";
             paragraph.Format.FirstLineIndent = "-1.5cm";
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
         }
-        static void DemonstrateFormattedText(Document document)
+        private void DemonstrateFormattedText(Document document)
         {
             document.LastSection.AddParagraph("Formatted Text", "Heading2");
 
@@ -291,7 +279,7 @@ namespace AspNetCorePdf.PdfProvider
             formattedText.Superscript = true;
             paragraph.AddText(".");
         }
-        static void DemonstrateBordersAndShading(Document document)
+        private void DemonstrateBordersAndShading(Document document)
         {
             document.LastSection.AddPageBreak();
             document.LastSection.AddParagraph("Borders and Shading", "Heading2");
@@ -302,21 +290,21 @@ namespace AspNetCorePdf.PdfProvider
             paragraph.Format.Borders.Width = 2.5;
             paragraph.Format.Borders.Color = Colors.Navy;
             paragraph.Format.Borders.Distance = 3;
-            paragraph.AddText(FillerTextMediumText);
+            paragraph.AddText(_fillerTextMediumText);
 
             document.LastSection.AddParagraph("Shading", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Format.Shading.Color = Colors.LightCoral;
-            paragraph.AddText(FillerTextText);
+            paragraph.AddText(_fillerTextText);
 
             document.LastSection.AddParagraph("Borders & Shading", "Heading3");
 
             paragraph = document.LastSection.AddParagraph();
             paragraph.Style = "TextBox";
-            paragraph.AddText(FillerTextMediumText);
+            paragraph.AddText(_fillerTextMediumText);
         }
-        static void DefineTables(Document document)
+        private void DefineTables(Document document)
         {
             Paragraph paragraph = document.LastSection.AddParagraph("Table Overview", "Heading1");
             paragraph.AddBookmark("Tables");
@@ -325,7 +313,7 @@ namespace AspNetCorePdf.PdfProvider
             DemonstrateTableAlignment(document);
             DemonstrateCellMerge(document);
         }
-        static void DemonstrateSimpleTable(Document document)
+        private void DemonstrateSimpleTable(Document document)
         {
             document.LastSection.AddParagraph("Simple Tables", "Heading2");
 
@@ -348,19 +336,19 @@ namespace AspNetCorePdf.PdfProvider
             cell = row.Cells[0];
             cell.AddParagraph("1");
             cell = row.Cells[1];
-            cell.AddParagraph(FillerTextShortText);
+            cell.AddParagraph(_fillerTextShortText);
 
             row = table.AddRow();
             cell = row.Cells[0];
             cell.AddParagraph("2");
             cell = row.Cells[1];
-            cell.AddParagraph(FillerTextText);
+            cell.AddParagraph(_fillerTextText);
 
             table.SetEdge(0, 0, 2, 3, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
 
             document.LastSection.Add(table);
         }
-        public static void DemonstrateTableAlignment(Document document)
+        private void DemonstrateTableAlignment(Document document)
         {
             document.LastSection.AddParagraph("Cell Alignment", "Heading2");
 
@@ -400,8 +388,7 @@ namespace AspNetCorePdf.PdfProvider
             row.Cells[1].AddParagraph("Text");
             row.Cells[2].AddParagraph("Text");
         }
-
-        public static void DemonstrateCellMerge(Document document)
+        private void DemonstrateCellMerge(Document document)
         {
             document.LastSection.AddParagraph("Cell Merge", "Heading2");
 
@@ -433,8 +420,7 @@ namespace AspNetCorePdf.PdfProvider
 
             table.AddRow();
         }
-
-        public static void DefineCharts(Document document)
+        private void DefineCharts(Document document)
         {
             Paragraph paragraph = document.LastSection.AddParagraph("Chart Overview", "Heading1");
             paragraph.AddBookmark("Charts");
