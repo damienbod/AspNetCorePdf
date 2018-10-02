@@ -43,7 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PDFSharpMigraDocAll\PDFSharpMigraDocAll.csproj" />
+    <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj" />
+    <ProjectReference Include="..\MigraDoc.Rendering\MigraDoc.Rendering.csproj" />
+    <ProjectReference Include="..\PdfSharp.Charting\PdfSharp.Charting.csproj" />
+    <ProjectReference Include="..\PdfSharp\PdfSharp.csproj" />
   </ItemGroup>
 
 </Project>
