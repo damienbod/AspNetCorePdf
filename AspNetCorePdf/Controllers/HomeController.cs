@@ -58,8 +58,8 @@ namespace AspNetCorePdf.Controllers
         {
             var data = new PdfData
             {
-                DocumentTitle = "This is my demo document Title",
-                DocumentName = "myFirst",
+                DocumentTitle = "Title of the MigraDoc",
+                DocumentName = "MigraDocDocName",
                 CreatedBy = "Damien",
                 Description = "some data description which I have, and want to display in the PDF file..., This is another text, what is happening here, why is this text display...",
                 DisplayListItems = new List<ItemsToDisplay>

@@ -20,30 +20,27 @@ namespace AspNetCorePdf.PdfProvider
         public string CreateMigraDocPdf(PdfData pdfData)
         {
             // Create a MigraDoc document
-            Document document = CreateDocument();
+            Document document = CreateDocument(pdfData);
+            string mdddlName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.mdddl";
+            string docName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.pdf";
 
-            //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(document);
-            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
+            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, mdddlName);
 
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
             renderer.Document = document;
-
             renderer.RenderDocument();
-
-            // Save the document...
-            string docName = $"{_createdDocsPath}/{pdfData.DocumentName}-{DateTime.UtcNow.ToOADate()}.pdf";
             renderer.PdfDocument.Save(docName);
 
             return docName;
         }
 
-        private Document CreateDocument()
+        private Document CreateDocument(PdfData pdfData)
         {
             // Create a new MigraDoc document
             Document document = new Document();
-            document.Info.Title = "Hello, MigraDoc";
-            document.Info.Subject = "Demonstrates an excerpt of the capabilities of MigraDoc.";
-            document.Info.Author = "Stefan Lange";
+            document.Info.Title = pdfData.DocumentTitle;
+            document.Info.Subject = pdfData.Description;
+            document.Info.Author = pdfData.CreatedBy;
 
             DefineStyles(document);
 
@@ -119,7 +116,7 @@ namespace AspNetCorePdf.PdfProvider
             paragraph.Format.SpaceAfter = "3cm";
 
             Image image = section.AddImage($"{_imagesPath}\\logo.jpg");
-            image.Width = "10cm";
+            image.Width = "4cm";
 
             paragraph = section.AddParagraph("A sample document that demonstrates the\ncapabilities of MigraDoc");
             paragraph.Format.Font.Size = 16;
