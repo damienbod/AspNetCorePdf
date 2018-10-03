@@ -4,6 +4,8 @@ Blog:
 
 https://damienbod.com/2018/09/30/creating-pdf-files-in-asp-net-core/
 
+https://damienbod.com/2018/10/03/creating-a-pdf-in-asp-net-core-using-migradoc-pdfsharp/
+
 ## Links 
 
 ### PDFSharp
